@@ -323,19 +323,19 @@ export class Mirrors {
       fs.appendFileSync("logger.csv", `${title}|${channelFrom}|${url}\n`);
       /* ============================================================= */
 
-      if (!url?.includes("mavely")) return; // REMOVE THIS LATER, PREVENT LOG SPAM
+      // if (!url?.includes("mavely")) return; // REMOVE THIS LATER, PREVENT LOG SPAM
       console.log("🔂 Adding message to the Queue");
       this.messageQueue.add(async () => {
         console.log("🔂 Proccesing queue message...");
         finalUrl = await this.generateMavelyLinkForUrl(embed, channelFrom);
-        // await this.discordMessageHandler(
-        //   message,
-        //   edited,
-        //   deleted,
-        //   channelFrom,
-        //   mirror,
-        //   payload
-        // );
+        await this.discordMessageHandler(
+          message,
+          edited,
+          deleted,
+          channelFrom,
+          mirror,
+          payload
+        );
         console.log("🔂 Message processed");
       });
     });
