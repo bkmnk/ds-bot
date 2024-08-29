@@ -74,10 +74,12 @@ export class Mirrors {
   private messageQueue: PQueue;
 
   private logErrors(methodname: string, error: Error) {
+    const date = new Date().toISOString();
     console.log(`Error in method ${methodname}`, error);
     fs.appendFileSync(
       "errors.json",
-      JSON.stringify({ methodname, error: error.message }, null, 2) + ",\n"
+      JSON.stringify({ methodname, error: error.message, date }, null, 2) +
+        ",\n"
     );
   }
   constructor(config: Config) {
@@ -101,10 +103,7 @@ export class Mirrors {
 
   initBrowser = async () => {
     /* Set up browser */
-    const browser = await puppeteer.launch({
-      headless: true,
-      args: ["--no-sandbox", "--disable-setuid-sandbox"],
-    });
+    const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
     this.browser = browser;
     this.page = page;
@@ -218,6 +217,8 @@ export class Mirrors {
     channelFrom: string
   ): Promise<string> {
     try {
+      const date = new Date().toISOString();
+
       const { title, url } = embed;
       if (!url) return "";
       const originalUrl = url || "";
@@ -243,6 +244,7 @@ export class Mirrors {
         endUrl,
         endUrlClean,
         finalLink,
+        date,
       };
       fs.appendFileSync(
         "embed.json",
@@ -250,7 +252,7 @@ export class Mirrors {
       );
       fs.appendFileSync(
         "embed.csv",
-        `${title}|${channelFrom}|${url}|${endUrl}|${endUrlClean}|${finalLink}\n`
+        `${title}|${channelFrom}|${url}|${endUrl}|${endUrlClean}|${finalLink}|${date}\n`
       );
 
       console.log("💥 Final Mavely Link:", finalLink);
@@ -340,17 +342,22 @@ export class Mirrors {
 
       replacedMessage.embeds.forEach(async (embed) => {
         try {
+          const date = new Date().toISOString();
+
           const { title, url } = embed;
           let finalUrl = url;
-          console.log("url: ", url?.split("?")[0] || url);
+          console.log(date, " - url: ", url?.split("?")[0] || url);
 
           /* Save all messages received (collecting all url possibilities) */
           try {
             fs.appendFileSync(
               "logger.json",
-              JSON.stringify({ title, url, channelFrom }, null, 2) + ",\n"
+              JSON.stringify({ title, url, channelFrom, date }, null, 2) + ",\n"
             );
-            fs.appendFileSync("logger.csv", `${title}|${channelFrom}|${url}\n`);
+            fs.appendFileSync(
+              "logger.csv",
+              `${title}|${channelFrom}|${url}|${date}\n`
+            );
           } catch (fileError) {
             this.logErrors("onMirror - File Append", fileError as Error);
           }
