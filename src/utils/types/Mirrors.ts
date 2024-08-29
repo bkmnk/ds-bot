@@ -97,27 +97,16 @@ export class Mirrors {
     const browser = await puppeteer.launch({
       headless: true,
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
-      env: {
-        DISPLAY: ":10.0",
-      },
-      // timeout
     });
     const page = await browser.newPage();
-
     this.browser = browser;
     this.page = page;
     try {
       const generateLinkUrl = "https://creators.joinmavely.com/home";
       await page.goto(generateLinkUrl);
-      await page.waitForNavigation({
-        timeout: 50000,
-      });
       await new Promise(async (resolve) =>
         setTimeout(() => resolve("done"), 2000)
       );
-      page.screenshot({
-        path: "screenshot.png",
-      });
       if (await page.$("input#email")) {
         console.log("🌐 Loggin in to Mavely");
         await page.type("#email", mavelyUserEmail);
@@ -266,6 +255,7 @@ export class Mirrors {
     mirror: Mirror,
     payload: WebhookMessageOptions
   ) => {
+    console.log("Sending discord message");
     if (deleted) {
       const findMessage = this.mirroredMessages.find(
         (msg) => msg.from === message.id
@@ -338,7 +328,7 @@ export class Mirrors {
       /* Save all messages received (collecting all url possibilities) */
       fs.appendFileSync(
         "logger.json",
-        JSON.stringify({ title, url, channelFrom, date: date }, null, 2) + ",\n"
+        JSON.stringify({ title, url, channelFrom, date }, null, 2) + ",\n"
       );
       fs.appendFileSync(
         "logger.csv",
@@ -346,7 +336,7 @@ export class Mirrors {
       );
       /* ============================================================= */
 
-      if (!url?.includes("mavely")) return; // REMOVE THIS LATER, PREVENT LOG SPAM
+      // if (!url?.includes("mavely")) return; // REMOVE THIS LATER, PREVENT LOG SPAM
       console.log("🔂 Adding message to the Queue");
       this.messageQueue.add(async () => {
         console.log("🔂 Proccesing queue message...");
@@ -358,7 +348,7 @@ export class Mirrors {
         //   channelFrom,
         //   mirror,
         //   payload
-        // );
+        //);
         console.log("🔂 Message processed");
       });
     });
