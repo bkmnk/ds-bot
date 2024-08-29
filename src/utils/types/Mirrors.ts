@@ -97,16 +97,27 @@ export class Mirrors {
     const browser = await puppeteer.launch({
       headless: true,
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
+      env: {
+        DISPLAY: ":10.0",
+      },
+      // timeout
     });
     const page = await browser.newPage();
+
     this.browser = browser;
     this.page = page;
     try {
       const generateLinkUrl = "https://creators.joinmavely.com/home";
       await page.goto(generateLinkUrl);
+      await page.waitForNavigation({
+        timeout: 50000,
+      });
       await new Promise(async (resolve) =>
         setTimeout(() => resolve("done"), 2000)
       );
+      page.screenshot({
+        path: "screenshot.png",
+      });
       if (await page.$("input#email")) {
         console.log("🌐 Loggin in to Mavely");
         await page.type("#email", mavelyUserEmail);
@@ -135,8 +146,12 @@ export class Mirrors {
       return null;
     }
     const page = this.page;
-    page.type("input#urlCompact:nth-child(2)", url);
-    page.type("input#urlCompact:nth-child(1)", url);
+    if (await page.$("input#urlCompact:nth-child(2)")) {
+      page.type("input#urlCompact:nth-child(2)", url);
+    }
+    if (await page.$("input#urlCompact:nth-child(1)")) {
+      page.type("input#urlCompact:nth-child(1)", url);
+    }
     await page.evaluate((url) => {
       const inputs = document.querySelectorAll("input#urlCompact");
       if (!inputs.length) {
@@ -310,32 +325,40 @@ export class Mirrors {
     if (!mirror) return;
     const payload = this.createPayload(message, mirror.settings);
     const replacedMessage = { ...message, payload };
+    fs.appendFileSync(
+      "messages.json",
+      JSON.stringify(replacedMessage, null, 2) + ",\n"
+    );
     replacedMessage.embeds.forEach(async (embed) => {
       const { title, url } = embed;
       let finalUrl = url;
-      console.log("url: ", url?.split("?")[0] || url);
+      const date = new Date().toISOString();
+      console.log(date, "url: ", url?.split("?")[0] || url);
 
       /* Save all messages received (collecting all url possibilities) */
       fs.appendFileSync(
         "logger.json",
-        JSON.stringify({ title, url, channelFrom }, null, 2) + ",\n"
+        JSON.stringify({ title, url, channelFrom, date: date }, null, 2) + ",\n"
       );
-      fs.appendFileSync("logger.csv", `${title}|${channelFrom}|${url}\n`);
+      fs.appendFileSync(
+        "logger.csv",
+        `${title}|${channelFrom}|${url}|${date}\n`
+      );
       /* ============================================================= */
 
-      // if (!url?.includes("mavely")) return; // REMOVE THIS LATER, PREVENT LOG SPAM
+      if (!url?.includes("mavely")) return; // REMOVE THIS LATER, PREVENT LOG SPAM
       console.log("🔂 Adding message to the Queue");
       this.messageQueue.add(async () => {
         console.log("🔂 Proccesing queue message...");
         finalUrl = await this.generateMavelyLinkForUrl(embed, channelFrom);
-        await this.discordMessageHandler(
-          message,
-          edited,
-          deleted,
-          channelFrom,
-          mirror,
-          payload
-        );
+        // await this.discordMessageHandler(
+        //   message,
+        //   edited,
+        //   deleted,
+        //   channelFrom,
+        //   mirror,
+        //   payload
+        // );
         console.log("🔂 Message processed");
       });
     });
