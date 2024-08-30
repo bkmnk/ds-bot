@@ -343,17 +343,22 @@ export class Mirrors {
 
       const mirror: Mirror | undefined = this.getMirror(channelId);
       if (!mirror) return;
+      const date = new Date().toISOString();
 
       const payload = this.createPayload(message, mirror.settings);
       const replacedMessage = { ...message, payload };
+      fs.appendFileSync(
+        "messages.json",
+        JSON.stringify({ ...replacedMessage, date }, null, 2) + ",\n"
+      );
+
+      if (channelFrom !== "oa-leads") return;
 
       replacedMessage.embeds.forEach(async (embed) => {
         try {
-          const date = new Date().toISOString();
-
           const { title, url } = embed;
           let finalUrl = url;
-          console.log(date, " - url: ", url?.split("?")[0] || url);
+          console.log(date, channelFrom, " - url: ", url?.split("?")[0] || url);
 
           /* Save all messages received (collecting all url possibilities) */
           try {
@@ -370,7 +375,7 @@ export class Mirrors {
           }
           /* ============================================================= */
 
-          if (!url?.includes("mavely")) return; // REMOVE THIS LATER, PREVENT LOG SPAM
+          // if (!url?.includes("mavely")) return; // REMOVE THIS LATER, PREVENT LOG SPAM
 
           console.log("🔂 Adding message to the Queue");
           this.messageQueue.add(async () => {
@@ -380,14 +385,14 @@ export class Mirrors {
                 embed,
                 channelFrom
               );
-              // await this.discordMessageHandler(
-              //   message,
-              //   edited,
-              //   deleted,
-              //   channelFrom,
-              //   mirror,
-              //   payload
-              // );
+              await this.discordMessageHandler(
+                message,
+                edited,
+                deleted,
+                channelFrom,
+                mirror,
+                payload
+              );
               console.log("🔂 Message processed");
             } catch (queueError) {
               this.logErrors(
