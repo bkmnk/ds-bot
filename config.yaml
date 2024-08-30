@@ -1,0 +1,1389 @@
+############## AMAZON MOD ##############
+mirrors:
+  # cupons
+  - webhook: https://discord.com/api/webhooks/1275623509543878726/nLo1sUhf14EguYj2FyJQWk5v8k3LlT61WCWM_vzeQFCsIEMk35bP2io5zanlaKGco9Yq
+    channels:
+      - "1237039603047862434"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+
+ # revendas walmart
+  - webhook: https://discord.com/api/webhooks/1275621435515080735/24QU9dJwLtXXT2lDRYG7Hcy1TGorSPcRsXz5a89OGzmhhRqlwoIGJxAZjDXHYlhyAbV5
+    channels:
+      - "1237039730768744639"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+##################CLEARENCE##############################################
+  #walmart-clearance
+  - webhook: https://discord.com/api/webhooks/1275800307078795308/i3LWJD0x7VagD0VvnpVCLrMx0r3CfwVqWDO6rc9g5gWQ5ywVDyZBE_OFq5SDzZU8wYTU
+    channels:
+      - "744273614207189172"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+
+ #TARGET-clearance
+  - webhook: https://discord.com/api/webhooks/1275890241491832998/F-uC6mEws8vULpsYpaNL0qI1VCdSBggQ-MLnmFHObySrpv0b9qaeCil3UcN6INOj7Zsq
+    channels:
+      - "744273612780994701"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+ #lowers-clearance
+  - webhook: https://discord.com/api/webhooks/1275890567951286312/_mRnP8utX-HqKZ2IBoMUbAHwo3kNsbmXKnkvS-zkXm90pl5_sKaABPKC-AqNuAv0yp9T
+    channels:
+      - "1212881353239040091"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+#homedepot-clearance
+  - webhook: https://discord.com/api/webhooks/1275890815595712522/EVZ7ULHK1buOcl9XCX7SjKrNjqQR8XIBSAPlEieVUxKxGAcTMgfIrruK44flMPoaAMtN
+    channels:
+      - "744273615146582116"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+#########################RETAIL MONITORS##################################################
+  #MONITOR WALMART
+  - webhook: https://discord.com/api/webhooks/1275146422785675275/bqf0U6RiNKFEdcOW9WUXZbEHhTEu9BwlySutfxOR4inkSxNVnRnIFVJEPbxiiHDklKK9
+    channels:
+      - "903789734172692480"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Akira Monitors"
+          with: "MOD"
+          where: "embed_footer"
+        - replace: "Akira Monitors"
+          with: "MOD"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Akira Monitors"
+          with: "MOD"
+          where: "embed_author"
+        - replace: "Akira Monitors"
+          with: "MOD"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"		  
+  #MONITOR TARGET
+  - webhook: https://discord.com/api/webhooks/1275147452202090529/ThNQctZpT3XA3VGVqG-qkrAMV6aB3UeB5-MHSjzdHBUZ5LYxKpp_edlZmIaPdEcFthAY
+    channels:
+      - "903789635153571860"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Funil Amazon"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Funil Amazon"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Funil Amazon"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Funil Amazon"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"		  
+  #MONITOR BEST BUY
+  - webhook: https://discord.com/api/webhooks/1275147650051870891/-D4_zmxSJ7U2zlJF0rmObN1sk6M7SmW6S-SzlfFaaZU_F_ezSbyjgJ6ekCXwujq9Gfdl
+    channels:
+      - "903787970425917490"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Funil Amazon"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Funil Amazon"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Funil Amazon"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Funil Amazon"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"	  
+  #MONITOR HOME DEPOT
+  - webhook: https://discord.com/api/webhooks/1275148286549950579/PV5lxNY753rLQykMyrPlbhVHzdatWahUnALyXaTMB2SfEdQEakEFmaTcXuZnCWvndf7k
+    channels:
+      - "903788431354785842"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Funil Amazon"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Funil Amazon"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Funil Amazon"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Funil Amazon"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+#########################ERRO PRICE & DEALS##################################################
+  # Price-errors
+  - webhook: https://discord.com/api/webhooks/1275542476467208204/4uVF-zuFA1OGUjY4QMpYFMvKQyfreH_W4Fjf4ZzwF5spMmtVGLl_Ob93EX4EsmjAZ9Q9
+    channels:
+      - "1081722147728261231"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+  # deal-extra
+  - webhook: https://discord.com/api/webhooks/1275543141340155925/H0d_KcAxyjAG1dfAqx6ofnAdDyy6kSUSRwLu8QaYb6xG9RO8MIHP3HK34VIOVO6LWkLk
+    channels:
+      - "1102025169129701487"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+ # amz-2-ebay-bot
+  - webhook: https://discord.com/api/webhooks/1275543727020179531/VbERZG5NM86ODQvolS9Os9F0cJG9HOi-GjtmxTZDVIQdlpF5WQjxwqWoXFOb9uDQlxpS
+    channels:
+      - "1195539972422381588"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+
+ # restabelecimento de desconto
+  - webhook: https://discord.com/api/webhooks/1275544079991570537/nQthEq9XzLZXBXn02kfVyviuzKMaYTQJldY3JMH8V1jV1Xg8YsMONSp0viy_sdku8JAV
+    channels:
+      - "1099364925157163118"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+ # desconto de estoque
+  - webhook: https://discord.com/api/webhooks/1275544045774704711/DKBki8C-UM-qMfdpfluvs6CzznIAi2L88HujdVOgb6Ym6Rc_0x4nRzmPCQb0c6xMzrHk
+    channels:
+      - "1266550404947251201"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+#########################DEAL MONITORS##################################################
+ #amz-90-100-off
+  - webhook: https://discord.com/api/webhooks/1275857226602516581/RdRqBquaRZZXh4cv7zbzaHyugGjzgRcR2A2N7donRUwiOsY6BbABFdpQyzjqRWXsgWR7
+    channels:
+      - "1103756115977703585"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+#amz-80-89-off
+  - webhook: https://discord.com/api/webhooks/1275857501589475348/o3GPKzFBzkKSLAk89ZYBTBHpRWNFhc7UgXZC9KSJQPcVzu1VWtOlU21WL2P2ZVM-gtEj
+    channels:
+      - "1103756168289079397"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+#amz-70-79-off
+  - webhook: https://discord.com/api/webhooks/1275857745286795348/5h9fd8InNrvz4GIQ7HXZsrDEAsGfGYlOzueRTRFK02zzd6fMl-MkOlSe1cb8xuXlkYLw
+    channels:
+      - "1103756337101406288"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+#amz-50-69-off
+  - webhook: https://discord.com/api/webhooks/1275857893039542317/RiX_AG8YNrTnGgSj86a1X0QpblNJX14GYpEOUeO-FCQR_J_OD-xDjGNJbWPdbV3MiQUq
+    channels:
+      - "1103756386866823178"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+#ʜᴏᴍᴇᴅᴇᴘᴏᴛ-80-100-ᴏꜰꜰ
+  - webhook: https://discord.com/api/webhooks/1275858136644845648/gr5656QdLswCwxalsq0HV-4n9Rgee-PBLytLPLXkIcT6xFdC2DYCjG-LtVBPkzcq9cmE
+    channels:
+      - "1150805205605163059"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+#ʜᴏᴍᴇᴅᴇᴘᴏᴛ-70-79-ᴏꜰꜰ
+  - webhook: https://discord.com/api/webhooks/1275858340534026240/raMw3J6j33qouMjch8fRfmnqZKejHWBn8T2m_nFPjpZYURCsDGu7NyjS0icdINqw8zEs
+    channels:
+      - "1150805257069285406"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+#ʜᴏᴍᴇᴅᴇᴘᴏᴛ-50-69-ᴏꜰꜰ
+  - webhook: https://discord.com/api/webhooks/1275858762229350523/n7srePtX1vqsNymZkKzouwzWNgSdokvS4hHwhWwrGtQ69erAiA6cMcxh1ORdDuvV7VDY
+    channels:
+      - "1150805283690528888"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+#woot-deals
+  - webhook: https://discord.com/api/webhooks/1275859011987574908/1G9A4FIcWyjlva9HRFDHaOZCwdR0XkUbN_PG_RhIIL1sV_ewj8ysxKlIL2byH_tx4Fj2
+    channels:
+      - "1137404259634262097"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+######################### RETAIL ARBRITAGE##################################################
+ # holiday-flips
+  - webhook: https://discord.com/api/webhooks/1275798347969728697/bhg2MJPun8-F3Z8eb7cVP3ncLjj0ukxPPnGCIbD0anMKnwe0ngDGeiwga3ngWoF_zftZ
+    channels:
+      - "1248252122026344509"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+#revendas-walmart
+  - webhook: https://discord.com/api/webhooks/1275798441863413841/u36u8FzWUHHOnSBO-mFj5lshwrfi0LP1ODcTdF1LazaJ1X0ocDi0wVmSaOtUTo9__vDJ
+    channels:
+      - "1212882660318519337"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+#ʀᴇᴠᴇɴᴅᴀꜱ-ᴛᴀʀɢᴇᴛ
+  - webhook: https://discord.com/api/webhooks/1275798507868913767/wFFeF8oCdqpHhpaSS-PtB7768xex4-U2O6-2lPYrUEYEu5pMCKzX0iQYVVDsnTW5gZQ2
+    channels:
+      - "1212882930053947392"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+#ᴅᴇꜱᴄᴏɴᴛᴏꜱ-ᴅᴇ-ʟᴏᴊᴀꜱ
+  - webhook: https://discord.com/api/webhooks/1275798572415320154/68zRw6_tBQDpD4NmNOWkHtmMrsFpTRynHsJLUtmc0eqH9t_31ESYNEKVKyz9saNFUtlm
+    channels:
+      - "744273623245651978"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+#ᴏᴜᴛʀᴀꜱ-ʟᴏᴊᴀꜱ
+  - webhook: https://discord.com/api/webhooks/1275798638018433035/tfo30OWuBhShfJblyeDpJA5ojn9npTO3oWEk42UL9K0Hrdcx0n3TGAOsqPD3sS-mnGoW
+    channels:
+      - "744273626190315693"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+#ʟᴏᴊᴀꜱ-ᴅᴇ-ꜱᴇɢᴜɴᴅᴀ-ᴍᴀ̃ᴏ
+  - webhook: https://discord.com/api/webhooks/1275798698122543174/OqZAfexEi2VX_j2dP1CC043Pw_eGZWHd6cO7-6VDsda0aLJVcrahPTfMS5_uPggD9Zh1
+    channels:
+      - "757748328984477827"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+######################### MAIN MONITORS ##################################################
+ # bestbuy
+  - webhook: https://discord.com/api/webhooks/1275830048254988369/ODgCE3ZSUqNJqhSlCaO_2RiT-y8mYfCHphdyujc2K8JDZ3O74us4x6q9pP58NqDdEWx6
+    channels:
+      - "892567387184963594"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+#collectibles-toys
+  - webhook: https://discord.com/api/webhooks/1275830182220927018/w21wc6NNCBzG1szvMpmiX_6bbNaNWaUkTS01FW-gMdY7D2XZJxcXs_A4E-ac6U9dVD85
+    channels:
+      - "1042208419047813241"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+#gamestop-monitors
+  - webhook: https://discord.com/api/webhooks/1275830839510302740/gb_0k9kBAryGBjE3-z9ouOVn-BNE8P-8JkJJiSFvTnNBwetFuHTP3cbOCUvitq6snbpa
+    channels:
+      - "755596014202781799"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+#hats
+  - webhook: https://discord.com/api/webhooks/1275831129714462791/bl_nNGAZKYQd49HezU97TahsQtwosn2VI3EjPUiSe25gp5bzmMLCOViJzKkM_9H1NaGw
+    channels:
+      - "874480294655299595"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+#mattel
+  - webhook: https://discord.com/api/webhooks/1275831341513969674/1JPp4qaAwdKXK0maz6L3ygN5_WwKO5COAbhZPtHtnOFPZ-_Mgb6AcaAJM82IWVcYUSpD
+    channels:
+      - "882662579347013672"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+#target-monitor
+  - webhook: https://discord.com/api/webhooks/1275831515183321251/1gfBfApqzpMCd4NF49gGzvdcaGg9st7PaKn4YAWKKv6qsWPOL82zzI8RJ0IqHADidQs8
+    channels:
+      - "828982288800022588"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+#tumblers
+  - webhook: https://discord.com/api/webhooks/1275831842481770658/l29ORlc_Q7ok99344Xk4CvryoEs-o4hNhAgXnghve2bxSPrGnSoM4pOAuZ_LcYhKwO4K
+    channels:
+      - "1215427650496241814"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+#walmart-monitors
+  - webhook: https://discord.com/api/webhooks/1275832028637691904/BBNPxwCmbvtGRyEgWqpUh0keMOReyfmKM3yLVUnp5mxLugvapRaOtbkMiXwP_l3_m0-X
+    channels:
+      - "843069083079278652"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+#disney
+  - webhook: https://discord.com/api/webhooks/1275832340568084520/Bk7i6lxo4LVGxsS90jPa6t2akWzQk3cPeajNui-dnEJb5phVIs6YlQi5iiBuYEOeJHqC
+    channels:
+      - "892567561894498364"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+#ᴅꜱɢ-ʀᴇɪ-ʏᴇᴛɪ-ꜱᴄʜᴇᴇʟꜱ-ᴘᴜʙʟɪᴄʟᴀɴᴅꜱ-ᴀᴄᴀᴅᴇᴍʏ
+  - webhook: https://discord.com/api/webhooks/1275832569597919266/77SMD4rRHa_6OV6sd33HGvxKRG9vNaDB0BIGCPbDXFKdNEf4qqsP_ruKM7qESoGUMjin
+    channels:
+      - "1087365721568317470"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+#ꜰᴜɴᴋᴏꜱʜᴏᴘ
+  - webhook: https://discord.com/api/webhooks/1275832723612635198/w09VT-ARt8JAZrVdb8CW2hazsqPgHC3FJeOFijPNxTFM-1q8ZIlLZZF8wPOTDmV1R5MJ
+    channels:
+      - "879529611724210206"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+#ᴇɴᴛᴇʀᴛᴀɪɴᴍᴇɴᴛ-ᴇᴀʀᴛʜ-ʙʙᴛꜱ
+  - webhook: https://discord.com/api/webhooks/1275833109702508604/Asn0HNdxWPgkmqF1Q6AMZvrw_DJdS-E--OVTJ3Su13BTzP7ORth3cldaAXcH5hLTHqgY
+    channels:
+      - "1141431593811054703"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+#fanatics-wwe
+  - webhook: https://discord.com/api/webhooks/1275833290145927168/zCREKMJohBLP1YTsc2e4DZha2HvFIJvuqFRX8-1-M_nwopfWkhZtoXOIm_WsLY756_y4
+    channels:
+      - "1103825699657232385"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+#ᴍᴀᴄʏꜱ-ᴀʟᴅᴏ
+  - webhook: https://discord.com/api/webhooks/1275833597831544832/uwcSoEG5UCx8IqIRBw26391bRvfw3G1zv-zGmrke7OHMzi9a_gcTYBqRw257BqFOop45
+    channels:
+      - "1126179122616467708"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+#ᴍᴇɪᴊᴇʀ-ʙɪɢʟᴏᴛꜱ-ꜱᴀᴍꜱ-ᴄᴏꜱᴛᴄᴏ-ʙᴊꜱ-ᴘᴀʀᴛʏᴄɪᴛʏ
+  - webhook: https://discord.com/api/webhooks/1275833840455127080/OvnsigT4gJJ_arfz5AD0_DyYoqcxkqcP2_3EwcVWXV8OcJdST6mSjAqlDnvFwfPB3EG3
+    channels:
+      - "1132031050227404901"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+#ᴘʟᴀʏꜱᴛᴀᴛɪᴏɴ-ɴᴇᴡᴇɢɢ-ᴀɴᴛᴏɴʟɪɴᴇ-ɴɪɴᴛᴇɴᴅᴏ-ꜰᴜᴊɪꜰɪʟᴍ
+  - webhook: https://discord.com/api/webhooks/1275834120253083698/qHwSPoTKnMrLFwL8l7vkHWN3WWJtQlXM54_mqBzUBwZeZv6CR6cFo83OAA89Lr_7mSFw
+    channels:
+      - "1141476730176016505"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+#spirit-halloween-spencers
+  - webhook: https://discord.com/api/webhooks/1275834309877567519/5zdxrA9obdW-1rOUwuq_gEQaLTb69NYkPxZtCvRcuCLI-sbsaGwMHAp2wkNlpg8Lhrix
+    channels:
+      - "1121089397966782495"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+#ᴛᴊ-ʜᴏʙʙʏ-ʜᴏᴍᴇɢ-ᴘᴏᴛᴛᴇʀʏ-ᴍɪᴄʜᴀᴇʟꜱ-ᴀᴛʜᴏᴍᴇ-ᴋᴏʜʟꜱ-5ʙᴇʟʟᴏᴡꜱ
+  - webhook: https://discord.com/api/webhooks/1275834522964987924/v05D_PVxSZM7pRhAaWys2To9IJLJhQXVUCTjekV1BrDxjJXniAynasoGPBEFKsj9Fkg0
+    channels:
+      - "1131750764256182472"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+#ᴜʟᴛʀᴀ-ɴʏx-ꜱᴇᴘʜᴏʀᴀ-ᴍᴀᴄ
+  - webhook: https://discord.com/api/webhooks/1275834522964987924/v05D_PVxSZM7pRhAaWys2To9IJLJhQXVUCTjekV1BrDxjJXniAynasoGPBEFKsj9Fkg0
+    channels:
+      - "1054601376770035743"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+#ᴡᴀʟɢʀᴇᴇɴꜱ-ʀɪᴛᴇᴀɪᴅ-ᴄᴠꜱ
+  - webhook: https://discord.com/api/webhooks/1275835191327326380/0g9ut5x4QUCUZLj9XbH8-9AqnAFYR6IIYreztjIpQDogNTEHVLRZ19XMAIEN1FlzS8ek
+    channels:
+      - "1173638290725945366"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+#TESLA
+  - webhook: https://discord.com/api/webhooks/1275835343022854166/nz-zsBcsQzBJXLkn8hjvMH-gKlp_F5S4c8KD8fniFAVf7BtAfW6qgGbMCSlcPzK7JmJQ
+    channels:
+      - "1238475666194960445"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+#TESLA
+  - webhook: https://discord.com/api/webhooks/1275835508286820412/3r7R_kTAxxyv1YVyo7MEJEiSfihuBNEp_aS-0VH2JfmmPTlKMDSSxhs3ynlJLXUTkQzg
+    channels:
+      - "1252348813889376367"
+    settings:
+      noContent: false
+      noEmbeds: false
+      noFiles: false
+      replacers:
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_footer"
+        - replace: "*"
+          with: "https://i.imgur.com/wAx2QUm.jpg"
+          where: "embed_footer_icon"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "Divine"
+          with: "Amazon Mod"
+          where: "embed_author"
+        - replace: "*"
+          with: "https://i.imgur.com/zxJlwil.jpg"
+          where: "embed_author_icon"
+###########################################################################
