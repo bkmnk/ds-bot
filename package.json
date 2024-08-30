@@ -22,7 +22,7 @@
     "dotenv": "^16.4.5",
     "enmap": "^5.9.10",
     "p-queue": "^6.6.2",
-    "puppeteer": "^23.1.1",
+    "puppeteer": "^23.2.1",
     "yaml": "^2.3.4"
   },
   "devDependencies": {

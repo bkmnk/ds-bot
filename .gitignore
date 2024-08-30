@@ -1,0 +1,12 @@
+# Folders
+node_modules/
+dist/
+.cache
+.npm
+logs
+embed.json
+embed.csv
+logger.json
+# Fileds
+*lock*
+.env
