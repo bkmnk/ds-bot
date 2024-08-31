@@ -72,6 +72,7 @@ export class Mirrors {
   private browser?: Browser = undefined;
   private page?: Page = undefined;
   private messageQueue: PQueue;
+  private channels: Record<string, string> = {};
 
   private logErrors(methodname: string, error: Error) {
     const date = new Date().toISOString();
@@ -219,10 +220,10 @@ export class Mirrors {
     }
   };
 
-  async generateMavelyLinkForUrl(
+  generateMavelyLinkForUrl = async (
     embed: MessageEmbed,
     channelFrom: string
-  ): Promise<string> {
+  ): Promise<string> => {
     try {
       const date = new Date().toISOString();
 
@@ -268,16 +269,16 @@ export class Mirrors {
       this.logErrors("Mirrors.generateMavelyLinkForUrl", error as Error);
       return "";
     }
-  }
+  };
 
-  async discordMessageHandler(
+  discordMessageHandler = async (
     message: Message | PartialMessage,
     edited: Boolean = false,
     deleted: Boolean = false,
     channelFrom: string,
     mirror: Mirror,
     payload: WebhookMessageOptions
-  ) {
+  ) => {
     try {
       if (deleted) {
         const findMessage = this.mirroredMessages.find(
@@ -322,7 +323,8 @@ export class Mirrors {
     } catch (error) {
       this.logErrors(`Mirrors.discordMessageHandler`, error as Error);
     }
-  }
+  };
+
   onMirror = async (
     message: Message | PartialMessage,
     edited: Boolean = false,
@@ -332,9 +334,15 @@ export class Mirrors {
       if (!this.messageQueue) {
         console.log("no messageQueue defined");
       }
-
-      const channelFrom = (await getChannel(message.channel.id)).name;
-
+      let channelFrom = this.channels[message.channel.id];
+      if (!channelFrom) {
+        console.log("fetching channel");
+        const getChannelResult = (await getChannel(message.channel.id)).name;
+        this.channels[message.channel.id] = getChannelResult;
+        channelFrom = getChannelResult;
+      } else {
+        console.log("channel arlready fetched");
+      }
       const channelId =
         message.channel.isThread() &&
         message.channel.parent?.type === "GUILD_FORUM"
@@ -349,11 +357,12 @@ export class Mirrors {
       const replacedMessage = { ...message, payload };
       fs.appendFileSync(
         "messages.json",
-        JSON.stringify({ ...replacedMessage, date, channelFrom }, null, 2) + ",\n"
+        JSON.stringify({ ...replacedMessage, date, channelFrom }, null, 2) +
+          ",\n"
       );
 
       if (channelFrom !== "oa-leads") return;
-      console.log('Handling message from oa-leads')
+      console.log("Handling message from oa-leads");
       replacedMessage.embeds.forEach(async (embed) => {
         try {
           const { title, url } = embed;
