@@ -254,11 +254,11 @@ export class Mirrors {
         date,
       };
       fs.appendFileSync(
-        "embed.json",
+        "mavely.json",
         JSON.stringify(relevantContent, null, 2) + ",\n"
       );
       fs.appendFileSync(
-        "embed.csv",
+        "mavely.csv",
         `${title}|${channelFrom}|${url}|${endUrl}|${endUrlClean}|${finalLink}|${date}\n`
       );
 
@@ -349,11 +349,11 @@ export class Mirrors {
       const replacedMessage = { ...message, payload };
       fs.appendFileSync(
         "messages.json",
-        JSON.stringify({ ...replacedMessage, date }, null, 2) + ",\n"
+        JSON.stringify({ ...replacedMessage, date, channelFrom }, null, 2) + ",\n"
       );
 
       if (channelFrom !== "oa-leads") return;
-
+      console.log('Handling message from oa-leads')
       replacedMessage.embeds.forEach(async (embed) => {
         try {
           const { title, url } = embed;

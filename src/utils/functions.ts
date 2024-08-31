@@ -172,7 +172,7 @@ export const getChannel: (channel: string) => Promise<TChannel> = async (
     .then((res) => {
       channels.push(res.data);
       return res.data;
-    });
+    }).catch(console.error);
 };
 
 /**
