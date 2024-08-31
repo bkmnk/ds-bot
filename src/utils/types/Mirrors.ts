@@ -362,8 +362,8 @@ export class Mirrors {
           ",\n"
       );
 
-      if (channelFrom !== "oa-leads") return;
-      console.log("Handling message from oa-leads");
+      if (!channelFrom.includes('oa-leads')) return;
+      console.log("Handling message from 💎┃oa-leads");
       replacedMessage.embeds.forEach(async (embed) => {
         try {
           const { title, url } = embed;
