@@ -336,12 +336,12 @@ export class Mirrors {
       }
       let channelFrom = this.channels[message.channel.id];
       if (!channelFrom) {
-        console.log("fetching channel");
+        console.log("fetching channel", Object.keys(this.channels).length);
         const getChannelResult = (await getChannel(message.channel.id)).name;
         this.channels[message.channel.id] = getChannelResult;
         channelFrom = getChannelResult;
       } else {
-        console.log("channel arlready fetched");
+        console.log("channel arlready fetched", Object.keys(this.channels).length);
       }
       const channelId =
         message.channel.isThread() &&
