@@ -228,15 +228,21 @@ export class Mirrors {
       const date = new Date().toISOString();
 
       const { title, url } = embed;
-      if (!url) return "";
+      if (!url) {
+        console.log("No url provided")
+        return "";
+      }
       const originalUrl = url || "";
       const SUPPORTED_URL_DOMAINS = ["mavely"];
       const supportedDomain = SUPPORTED_URL_DOMAINS.some((domain) =>
         originalUrl.includes(domain)
       );
-      if (!supportedDomain) return originalUrl;
+      if (!supportedDomain) {
+        console.log('Domain not supported: ', originalUrl)
+        return originalUrl;
+      }
 
-      console.log("💫 Handling a message: ", title, url);
+      console.log("💫💫 Handling a message: ", title, url);
 
       const { endUrl, endUrlClean } = await this.parseUrl(originalUrl);
       const finalLink = await this.generateMavelyLink(endUrlClean);
@@ -263,7 +269,7 @@ export class Mirrors {
         `${title}|${channelFrom}|${url}|${endUrl}|${endUrlClean}|${finalLink}|${date}\n`
       );
 
-      console.log("💥 Final Mavely Link:", finalLink);
+      console.log("💥💥 Final Mavely Link:", finalLink);
       return finalLink;
     } catch (error) {
       this.logErrors("Mirrors.generateMavelyLinkForUrl", error as Error);
