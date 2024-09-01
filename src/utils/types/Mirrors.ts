@@ -73,6 +73,7 @@ export class Mirrors {
   private page?: Page = undefined;
   private messageQueue: PQueue;
   private channels: Record<string, string> = {};
+  private mavelyLinks: Record<string, string> = {};
 
   private logErrors(methodname: string, error: Error) {
     const date = new Date().toISOString();
@@ -221,15 +222,15 @@ export class Mirrors {
   };
 
   generateMavelyLinkForUrl = async (
-    embed: MessageEmbed,
+    url: string,
     channelFrom: string
   ): Promise<string> => {
     try {
       const date = new Date().toISOString();
 
-      const { title, url } = embed;
+      // const { title, url } = embed;
       if (!url) {
-        console.log("No url provided")
+        console.log("No url provided");
         return "";
       }
       const originalUrl = url || "";
@@ -238,11 +239,11 @@ export class Mirrors {
         originalUrl.includes(domain)
       );
       if (!supportedDomain) {
-        console.log('Domain not supported: ', originalUrl)
+        console.log("Domain not supported: ", originalUrl);
         return originalUrl;
       }
 
-      console.log("💫💫 Handling a message: ", title, url);
+      console.log("💫💫 Handling a message: ", url);
 
       const { endUrl, endUrlClean } = await this.parseUrl(originalUrl);
       const finalLink = await this.generateMavelyLink(endUrlClean);
@@ -252,7 +253,7 @@ export class Mirrors {
       }
 
       const relevantContent = {
-        title,
+        // title,
         channelFrom,
         url,
         endUrl,
@@ -266,7 +267,7 @@ export class Mirrors {
       );
       fs.appendFileSync(
         "mavely.csv",
-        `${title}|${channelFrom}|${url}|${endUrl}|${endUrlClean}|${finalLink}|${date}\n`
+        `${channelFrom}|${url}|${endUrl}|${endUrlClean}|${finalLink}|${date}\n`
       );
 
       console.log("💥💥 Final Mavely Link:", finalLink);
@@ -342,14 +343,10 @@ export class Mirrors {
       }
       let channelFrom = this.channels[message.channel.id];
       if (!channelFrom) {
-        // console.log("fetching channel", Object.keys(this.channels).length);
         const getChannelResult = (await getChannel(message.channel.id)).name;
         this.channels[message.channel.id] = getChannelResult;
         channelFrom = getChannelResult;
-      } 
-      // else {
-      //   console.log("channel arlready fetched", Object.keys(this.channels).length);
-      // }
+      }
       const channelId =
         message.channel.isThread() &&
         message.channel.parent?.type === "GUILD_FORUM"
@@ -361,66 +358,96 @@ export class Mirrors {
       const date = new Date().toISOString();
 
       const payload = this.createPayload(message, mirror.settings);
-      const replacedMessage = { ...message, payload };
+      const replacedMessage = { ...message, ...payload };
       fs.appendFileSync(
         "messages.json",
         JSON.stringify({ ...replacedMessage, date, channelFrom }, null, 2) +
           ",\n"
       );
 
-      if (!channelFrom.includes('oa-leads')) return;
+      if (!channelFrom.includes("oa-leads")) return;
       console.log("Handling message from 💎┃oa-leads");
+
+      /* Get all links from the message */
+      const messageLinks: string[] = [];
       replacedMessage.embeds.forEach(async (embed) => {
-        try {
-          const { title, url } = embed;
-          let finalUrl = url;
-          console.log(date, channelFrom, " - url: ", url?.split("?")[0] || url);
+        if (embed.url) {
+          messageLinks.push(embed?.url);
+        }
+        if (embed.description) {
+          const descriptionUrls =
+            embed.description.match(/https?:\/\/[^\s]+/g) || [];
+          messageLinks.push(...descriptionUrls);
+        }
+      });
 
-          /* Save all messages received (collecting all url possibilities) */
-          try {
-            fs.appendFileSync(
-              "logger.json",
-              JSON.stringify({ title, url, channelFrom, date }, null, 2) + ",\n"
-            );
-            fs.appendFileSync(
-              "logger.csv",
-              `${title}|${channelFrom}|${url}|${date}\n`
-            );
-          } catch (fileError) {
-            this.logErrors("onMirror - File Append", fileError as Error);
-          }
-          /* ============================================================= */
-
-          // if (!url?.includes("mavely")) return; // REMOVE THIS LATER, PREVENT LOG SPAM
-
+      /* Create mavely affiliate links for each URL */
+      const mavellyLinks = messageLinks.filter((link) =>
+        link.includes("mavely")
+      );
+      const uniqueLinks = [...new Set(mavellyLinks)];
+      for await (const url of uniqueLinks) {
+        this.messageQueue.add(async () => {
           console.log("🔂 Adding message to the Queue");
-          this.messageQueue.add(async () => {
-            try {
-              console.log("🔂 Proccesing queue message...");
-              finalUrl = await this.generateMavelyLinkForUrl(
-                embed,
+          try {
+            console.log("🔂 Proccesing queue message...");
+            const existentAffiliateLink = this.mavelyLinks[url];
+            if (!existentAffiliateLink) {
+              const generatedLink = await this.generateMavelyLinkForUrl(
+                url,
                 channelFrom
               );
-              await this.discordMessageHandler(
-                message,
-                edited,
-                deleted,
-                channelFrom,
-                mirror,
-                payload
-              );
-              console.log("🔂 Message processed");
-            } catch (queueError) {
-              this.logErrors(
-                "onMirror - Queue Processing",
-                queueError as Error
+              this.mavelyLinks[url] = generatedLink;
+            }
+            console.log("🔂 Message processed");
+          } catch (queueError) {
+            this.logErrors("onMirror - Queue Processing", queueError as Error);
+          }
+        });
+      }
+
+      /* Replace existent links for new affiliate ones */
+      message.embeds.forEach(async (embed) => {
+        if (embed.url && this.mavelyLinks[embed.url]) {
+          embed.url = this.mavelyLinks[embed.url];
+        }
+        if (embed.description) {
+          const descriptionUrls =
+            embed.description.match(/https?:\/\/[^\s]+/g) || [];
+          descriptionUrls.forEach((url) => {
+            if (this.mavelyLinks[url] && embed.description) {
+              embed.description = embed.description.replace(
+                url,
+                this.mavelyLinks[url]
               );
             }
           });
-        } catch (embedError) {
-          this.logErrors("onMirror - Embed Processing", embedError as Error);
         }
+        embed.description = "🌌 " + embed.description;
       });
+
+      /* Send updated message to discord */
+      await this.discordMessageHandler(
+        message,
+        edited,
+        deleted,
+        channelFrom,
+        mirror,
+        payload
+      );
+      fs.appendFileSync(
+        "sentMessages.json",
+        JSON.stringify(
+          {
+            title:
+              message.embeds?.[0]?.title || message.embeds?.[0]?.description,
+            date,
+            channelFrom,
+          },
+          null,
+          2
+        ) + ",\n"
+      );
     } catch (error) {
       this.logErrors("onMirror", error as Error);
     }
