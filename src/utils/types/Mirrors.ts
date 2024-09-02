@@ -9,6 +9,7 @@ import puppeteer, { Browser, Page } from "puppeteer";
 import * as fs from "fs";
 import Enmap from "enmap";
 import PQueue from "p-queue";
+import { Promise as BluePromise } from "bluebird";
 
 import { Config } from "./Config";
 import { getChannel, logger, replacer } from "../functions";
@@ -74,6 +75,7 @@ export class Mirrors {
   private messageQueue: PQueue;
   private channels: Record<string, string> = {};
   private mavelyLinks: Record<string, string> = {};
+  private hasLoggedIn = false;
 
   private logErrors(methodname: string, error: Error) {
     const date = new Date().toISOString();
@@ -86,6 +88,7 @@ export class Mirrors {
   }
   constructor(config: Config) {
     this.initBrowser();
+
     this.messageQueue = new PQueue({ concurrency: 1 });
 
     console.log(`Carregando ${config.getMirrors().length} espelhos...`);
@@ -138,6 +141,7 @@ export class Mirrors {
         return;
       }
       console.log("🌐 Logged in successfully to Mavely");
+      return (this.hasLoggedIn = true);
     } catch (error) {
       this.logErrors("initBrowser", error as Error);
       return;
@@ -151,8 +155,12 @@ export class Mirrors {
         return null;
       }
       const page = this.page;
-      page.type("input#urlCompact:nth-child(2)", url);
-      page.type("input#urlCompact:nth-child(1)", url);
+      if (await page.$("input#urlCompact:nth-child(2)")) {
+        page.type("input#urlCompact:nth-child(2)", url);
+      }
+      if (await page.$("input#urlCompact:nth-child(1)")) {
+        page.type("input#urlCompact:nth-child(1)", url);
+      }
       await page.evaluate((url) => {
         const inputs = document.querySelectorAll("input#urlCompact");
         if (!inputs.length) {
@@ -248,7 +256,7 @@ export class Mirrors {
       const { endUrl, endUrlClean } = await this.parseUrl(originalUrl);
       const finalLink = await this.generateMavelyLink(endUrlClean);
       if (!finalLink) {
-        console.log("finalLink not found for: ", url, endUrlClean);
+        console.log("finalLink not found for: ", url, endUrlClean, finalLink);
         return originalUrl;
       }
 
@@ -332,15 +340,16 @@ export class Mirrors {
     }
   };
 
-  handleEmbedsUrlReplace = (message: Message | PartialMessage) => {
-    const embeds = message.embeds;
-    return embeds.forEach(async (embed) => {
+  handleUrlReplace = (message: Message | PartialMessage) => {
+    console.log("handling replace", this.mavelyLinks);
+    message.embeds.forEach(async (embed) => {
       if (embed.url && this.mavelyLinks[embed.url]) {
         embed.url = this.mavelyLinks[embed.url];
       }
       if (embed.description) {
         const descriptionUrls =
           embed.description.match(/https?:\/\/[^\s]+/g) || [];
+        console.log("descriptionUrls", descriptionUrls);
         descriptionUrls.forEach((url) => {
           if (this.mavelyLinks[url] && embed.description) {
             embed.description = embed.description.replace(
@@ -352,6 +361,18 @@ export class Mirrors {
       }
       embed.description = "🌌 " + embed.description;
     });
+    if (message.content) {
+      const contentUrls = message.content.match(/https?:\/\/[^\s]+/g) || [];
+      console.log("contentUrls", contentUrls);
+      contentUrls.forEach((url) => {
+        if (this.mavelyLinks[url] && message.content) {
+          console.log("replacing", url, "to:", this.mavelyLinks[url]);
+          message.content = message.content.replace(url, this.mavelyLinks[url]);
+        }
+      });
+      message.content = "🌌 " + message.content;
+    }
+    return message;
   };
 
   onMirror = async (
@@ -363,16 +384,16 @@ export class Mirrors {
       if (!this.messageQueue) {
         console.log("no messageQueue defined");
       }
-      let channelFrom = this.channels[message.channel.id];
+      let channelFrom = this.channels[message.channelId];
       if (!channelFrom) {
-        const getChannelResult = (await getChannel(message.channel.id)).name;
-        this.channels[message.channel.id] = getChannelResult;
+        const getChannelResult = (await getChannel(message.channelId)).name;
+        this.channels[message.channelId] = getChannelResult;
         channelFrom = getChannelResult;
       }
       const channelId =
-        message.channel.isThread() &&
-        message.channel.parent?.type === "GUILD_FORUM"
-          ? (message.channel.parentId as string)
+        message.channel?.isThread() &&
+        message.channel?.parent?.type === "GUILD_FORUM"
+          ? (message.channel?.parentId as string)
           : message.channelId;
 
       const mirror: Mirror | undefined = this.getMirror(channelId);
@@ -402,14 +423,23 @@ export class Mirrors {
           messageLinks.push(...descriptionUrls);
         }
       });
+      if (replacedMessage.content) {
+        const contentUrls =
+          replacedMessage.content.match(/https?:\/\/[^\s]+/g) || [];
+        messageLinks.push(...contentUrls);
+      }
 
       /* Create mavely affiliate links for each URL */
       const mavellyLinks = messageLinks.filter((link) =>
         link.includes("mavely")
       );
       const uniqueLinks = [...new Set(mavellyLinks)];
-      for await (const url of uniqueLinks) {
-        this.messageQueue.add(async () => {
+      await BluePromise.each(uniqueLinks, async (url: string) => {
+        // for await (const url of uniqueLinks) {
+        await this.messageQueue.add(async () => {
+          while (!this.hasLoggedIn) {
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+          }
           console.log("🔂 Adding message to the Queue");
           try {
             console.log("🔂 Proccesing queue message...");
@@ -420,37 +450,35 @@ export class Mirrors {
                 channelFrom
               );
               this.mavelyLinks[url] = generatedLink;
+              // return generatedLink;
             }
             console.log("🔂 Message processed");
+            return this.mavelyLinks[url] || url;
           } catch (queueError) {
             this.logErrors("onMirror - Queue Processing", queueError as Error);
           }
         });
-      }
+      });
+      console.log("starting replace urls");
 
       /* Replace existent links for new affiliate ones */
-      this.handleEmbedsUrlReplace(message);
-      this.handleEmbedsUrlReplace(replacedMessage as Message);
-
+      this.handleUrlReplace(message);
+      this.handleUrlReplace(replacedMessage as Message);
+      console.log(this.mavelyLinks);
       fs.appendFileSync(
         "updatedMessages.json",
         JSON.stringify({ ...replacedMessage, date, channelFrom }, null, 2) +
           ",\n"
       );
-      fs.appendFileSync(
-        "updatedMessagesOriginal.json",
-        JSON.stringify({ ...replacedMessage, date, channelFrom }, null, 2) +
-          ",\n"
-      );
       /* Send updated message to discord */
-      await this.discordMessageHandler(
-        message,
-        edited,
-        deleted,
-        channelFrom,
-        mirror,
-        payload
-      );
+      // await this.discordMessageHandler(
+      //   message,
+      //   edited,
+      //   deleted,
+      //   channelFrom,
+      //   mirror,
+      //   payload
+      // );
       fs.appendFileSync(
         "sentMessages.json",
         JSON.stringify(
@@ -478,8 +506,8 @@ export class Mirrors {
     const newMessage = replacer(message, mirrorSettings);
 
     const payload: WebhookMessageOptions = {
-      threadName: newMessage.channel.isThread()
-        ? newMessage.channel.name
+      threadName: newMessage?.channel?.isThread()
+        ? newMessage?.channel?.name
         : undefined,
       content: !mirrorSettings.noContent
         ? newMessage.content

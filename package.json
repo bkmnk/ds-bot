@@ -18,6 +18,7 @@
   "license": "",
   "dependencies": {
     "axios": "^1.6.5",
+    "bluebird": "^3.7.2",
     "discord.js-selfbot-v13": "^2.15.1",
     "dotenv": "^16.4.5",
     "enmap": "^5.9.10",
@@ -26,6 +27,7 @@
     "yaml": "^2.3.4"
   },
   "devDependencies": {
+    "@types/bluebird": "^3.5.42",
     "@types/node": "^20.11.0",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.3.3"
