@@ -425,7 +425,32 @@ export class Mirrors {
         }
         embed.description = "🌌 " + embed.description;
       });
-
+      replacedMessage.embeds.forEach(async (embed) => {
+        if (embed.url && this.mavelyLinks[embed.url]) {
+          embed.url = this.mavelyLinks[embed.url];
+        }
+        if (embed.description) {
+          const descriptionUrls =
+            embed.description.match(/https?:\/\/[^\s]+/g) || [];
+          descriptionUrls.forEach((url) => {
+            if (this.mavelyLinks[url] && embed.description) {
+              embed.description = embed.description.replace(
+                url,
+                this.mavelyLinks[url]
+              );
+            }
+          });
+        }
+        embed.description = "🌌 " + embed.description;
+      });
+      fs.appendFileSync(
+        'updatedMessages.json',
+        JSON.stringify({ ...replacedMessage, date, channelFrom }, null, 2) + ",\n"
+      );
+      fs.appendFileSync(
+        'updatedMessagesOriginal.json',
+        JSON.stringify({ ...replacedMessage, date, channelFrom }, null, 2) + ",\n"
+      );
       /* Send updated message to discord */
       await this.discordMessageHandler(
         message,
