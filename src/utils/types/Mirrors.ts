@@ -266,7 +266,7 @@ export class Mirrors {
             finalLink,
             date,
             channelFrom,
-          })
+          }) + ',\n'
         );
         return originalUrl;
       }
