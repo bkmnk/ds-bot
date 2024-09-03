@@ -257,6 +257,17 @@ export class Mirrors {
       const finalLink = await this.generateMavelyLink(endUrlClean);
       if (!finalLink) {
         console.log("finalLink not found for: ", url, endUrlClean, finalLink);
+        fs.appendFileSync(
+          "./notGeneratedMavely.json",
+          JSON.stringify({
+            url,
+            endUrlClean,
+            endUrl,
+            finalLink,
+            date,
+            channelFrom,
+          })
+        );
         return originalUrl;
       }
 
