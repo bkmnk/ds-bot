@@ -418,15 +418,15 @@ export class Mirrors {
 
       const payload = this.createPayload(message, mirror.settings);
       const replacedMessage = { ...message, ...payload };
+
+
+      if (!channelFrom.includes("oa-leads")) return;
+      console.log("Handling message from 💎┃oa-leads");
       fs.appendFileSync(
         "messages.json",
         JSON.stringify({ ...replacedMessage, date, channelFrom }, null, 2) +
           ",\n"
       );
-
-      if (!channelFrom.includes("oa-leads")) return;
-      console.log("Handling message from 💎┃oa-leads");
-
       /* Get all links from the message */
       const messageLinks: string[] = [];
       replacedMessage.embeds.forEach(async (embed) => {
