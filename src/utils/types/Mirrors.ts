@@ -479,6 +479,7 @@ export class Mirrors {
 
       /* Replace existent links for new affiliate ones */
       this.handleUrlReplace(message);
+      this.handleUrlReplace(payload as unknown as Message);
       this.handleUrlReplace(replacedMessage as Message);
       console.log(this.mavelyLinks);
       fs.appendFileSync(
