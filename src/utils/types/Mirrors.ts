@@ -357,7 +357,7 @@ export class Mirrors {
   };
 
   handleUrlReplace = (message: Message | PartialMessage) => {
-    console.log("handling replace", this.mavelyLinks);
+    // console.log("handling replace", this.mavelyLinks);
     message.embeds.forEach(async (embed) => {
       if (embed.url && this.mavelyLinks[embed.url]) {
         embed.url = this.mavelyLinks[embed.url];
@@ -365,7 +365,7 @@ export class Mirrors {
       if (embed.description) {
         const descriptionUrls =
           embed.description.match(/https?:\/\/[^\s]+/g) || [];
-        console.log("descriptionUrls", descriptionUrls);
+        // console.log("descriptionUrls", descriptionUrls);
         descriptionUrls.forEach((url) => {
           if (this.mavelyLinks[url] && embed.description) {
             embed.description = embed.description.replace(
@@ -375,18 +375,18 @@ export class Mirrors {
           }
         });
       }
-      embed.description = "🌌 " + embed.description;
+      embed.description = "🟠 " + embed.description;
     });
     if (message.content) {
       const contentUrls = message.content.match(/https?:\/\/[^\s]+/g) || [];
-      console.log("contentUrls", contentUrls);
+      // console.log("contentUrls", contentUrls);
       contentUrls.forEach((url) => {
         if (this.mavelyLinks[url] && message.content) {
           console.log("replacing", url, "to:", this.mavelyLinks[url]);
           message.content = message.content.replace(url, this.mavelyLinks[url]);
         }
       });
-      message.content = "🌌 " + message.content;
+      message.content = "🟠 " + message.content;
     }
     return message;
   };
@@ -475,13 +475,14 @@ export class Mirrors {
           }
         });
       });
-      console.log("starting replace urls");
+      // console.log("starting replace urls");
 
       /* Replace existent links for new affiliate ones */
       this.handleUrlReplace(message);
       this.handleUrlReplace(payload as unknown as Message);
       this.handleUrlReplace(replacedMessage as Message);
-      console.log(this.mavelyLinks);
+      // console.log(this.mavelyLinks);
+      fs.writeFileSync("mavelyLinks.json", JSON.stringify(this.mavelyLinks));
       fs.appendFileSync(
         "updatedMessages.json",
         JSON.stringify({ ...replacedMessage, date, channelFrom }, null, 2) +
