@@ -402,7 +402,7 @@ export class Mirrors {
       }
       let channelFrom = this.channels[message.channelId];
       if (!channelFrom) {
-        const getChannelResult = (await getChannel(message.channelId)).name;
+        const getChannelResult = (await getChannel(message.channelId))?.name;
         this.channels[message.channelId] = getChannelResult;
         channelFrom = getChannelResult;
       }
@@ -484,6 +484,11 @@ export class Mirrors {
       fs.appendFileSync(
         "updatedMessages.json",
         JSON.stringify({ ...replacedMessage, date, channelFrom }, null, 2) +
+          ",\n"
+      );
+      fs.appendFileSync(
+        "updatedMessagesOriginal.json",
+        JSON.stringify({ ...message, date, channelFrom }, null, 2) +
           ",\n"
       );
       /* Send updated message to discord */
