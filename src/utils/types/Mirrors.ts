@@ -319,9 +319,9 @@ export class Mirrors {
         if (findMessage)
           mirror.wh
             .deleteMessage(findMessage.to)
-            .then(() => logger(`Mensagem deletada! De: ${channelFrom}`))
+            .then(() => logger(`${new Date().toISOString()} Mensagem deletada! De: ${channelFrom}`))
             .catch((err) => {
-              logger(`Error ao deletar mensagem! De: ${channelFrom}\n\n`, err);
+              logger(`${new Date().toISOString()} Error ao deletar mensagem! De: ${channelFrom}\n\n`, err);
             });
       } else if (edited) {
         const findMessage = this.mirroredMessages.find(
@@ -331,15 +331,15 @@ export class Mirrors {
         if (findMessage)
           mirror.wh
             .editMessage(findMessage.to, payload)
-            .then(() => logger(`Mensagem editada! De: ${channelFrom}`))
+            .then(() => logger(`${new Date().toISOString()} Mensagem editada! De: ${channelFrom}`))
             .catch((err) => {
-              logger(`Error ao editar mensagem! De: ${channelFrom}\n\n`, err);
+              logger(`${new Date().toISOString()} Error ao editar mensagem! De: ${channelFrom}\n\n`, err);
             });
       } else {
         mirror.wh
           .send(payload)
           .then((msg) => {
-            logger(`Mensagem enviada! De: ${channelFrom}`);
+            logger(`${new Date().toISOString()} Mensagem enviada! De: ${channelFrom}`);
 
             this.mirroredMessages.push({
               from: message.id,
@@ -348,7 +348,7 @@ export class Mirrors {
             });
           })
           .catch((err) => {
-            logger(`Erro ao enviar mensagem! De: ${channelFrom}\n\n`, err);
+            logger(`${new Date().toISOString()} Erro ao enviar mensagem! De: ${channelFrom}\n\n`, err);
           });
       }
     } catch (error) {
