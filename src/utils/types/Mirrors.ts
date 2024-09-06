@@ -83,7 +83,7 @@ export class Mirrors {
     fs.appendFileSync(
       "errors.json",
       JSON.stringify({ methodname, error: error.message, date }, null, 2) +
-        ",\n"
+      ",\n"
     );
   }
   constructor(config: Config) {
@@ -366,28 +366,36 @@ export class Mirrors {
       if (embed.description) {
         const descriptionUrls =
           embed.description.match(/https?:\/\/[^\s]+/g) || [];
+        let replacedDesc = 0;
         // console.log("descriptionUrls", descriptionUrls);
         descriptionUrls.forEach((url) => {
           if (this.mavelyLinks[url] && embed.description) {
+            replacedDesc++;
             embed.description = embed.description.replace(
               url,
               this.mavelyLinks[url]
             );
           }
         });
+        if (replacedDesc > 0) {
+          embed.description = "🟠 " + embed.description;
+        }
       }
-      embed.description = "🟠 " + embed.description;
     });
     if (message.content) {
+      let replacedContent = 0;
       const contentUrls = message.content.match(/https?:\/\/[^\s]+/g) || [];
       // console.log("contentUrls", contentUrls);
       contentUrls.forEach((url) => {
         if (this.mavelyLinks[url] && message.content) {
+          replacedContent++;
           console.log("replacing", url, "to:", this.mavelyLinks[url]);
           message.content = message.content.replace(url, this.mavelyLinks[url]);
         }
       });
-      message.content = "🟠 " + message.content;
+      if (replacedContent > 0) {
+        message.content = "🟠 " + message.content;
+      }
     }
     return message;
   };
@@ -409,7 +417,7 @@ export class Mirrors {
       }
       const channelId =
         message.channel?.isThread() &&
-        message.channel?.parent?.type === "GUILD_FORUM"
+          message.channel?.parent?.type === "GUILD_FORUM"
           ? (message.channel?.parentId as string)
           : message.channelId;
 
@@ -426,7 +434,7 @@ export class Mirrors {
       fs.appendFileSync(
         "messages.json",
         JSON.stringify({ ...replacedMessage, date, channelFrom }, null, 2) +
-          ",\n"
+        ",\n"
       );
       /* Get all links from the message */
       const messageLinks: string[] = [];
@@ -487,12 +495,12 @@ export class Mirrors {
       fs.appendFileSync(
         "updatedMessages.json",
         JSON.stringify({ ...replacedMessage, date, channelFrom }, null, 2) +
-          ",\n"
+        ",\n"
       );
       fs.appendFileSync(
         "updatedMessagesOriginal.json",
         JSON.stringify({ ...message, date, channelFrom }, null, 2) +
-          ",\n"
+        ",\n"
       );
       /* Send updated message to discord */
       await this.discordMessageHandler(
@@ -540,17 +548,17 @@ export class Mirrors {
         : null,
       embeds: !mirrorSettings.noEmbeds
         ? newMessage.embeds.map(
-            (embed) =>
-              ({
-                ...embed,
-                fields: embed.fields.map((field) => ({
-                  name: field.name.trim().length === 0 ? "\u200B" : field.name,
-                  value:
-                    field.value.trim().length === 0 ? "\u200B" : field.value,
-                  inline: field.inline,
-                })),
-              } as MessageEmbed)
-          )
+          (embed) =>
+          ({
+            ...embed,
+            fields: embed.fields.map((field) => ({
+              name: field.name.trim().length === 0 ? "\u200B" : field.name,
+              value:
+                field.value.trim().length === 0 ? "\u200B" : field.value,
+              inline: field.inline,
+            })),
+          } as MessageEmbed)
+        )
         : [],
       files: !mirrorSettings.noAttachments
         ? [...newMessage.attachments.values()]
