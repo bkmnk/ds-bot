@@ -190,11 +190,11 @@ export class Mirrors {
           (backButton as HTMLButtonElement).click();
         });
       }
-      if(!link){
-        await page.screenshot({
-          path: "./sc-" + new Date().toISOString() + "-" + url + ".png",
-        });
-      }
+      // if(!link){
+      //   await page.screenshot({
+      //     path: "./sc-" + new Date().toISOString() + "-" + url + ".png",
+      //   });
+      // }
       return link;
     } catch (error) {
       this.logErrors("Mirrors.generateMavelyLink", error as Error);
