@@ -259,7 +259,7 @@ export class Mirrors {
       console.log("💫💫 Handling a message: ", url);
 
       const { endUrl, endUrlClean } = await this.parseUrl(originalUrl);
-      const finalLink = await this.generateMavelyLink(endUrlClean);
+      let finalLink = await this.generateMavelyLink(endUrlClean);
       if (!finalLink) {
         console.log("finalLink not found for: ", url, endUrlClean, finalLink);
         fs.appendFileSync(
@@ -275,6 +275,7 @@ export class Mirrors {
         );
         return originalUrl;
       }
+      finalLink = finalLink + '?'; // failsafe for urls added by mavely afterwards
 
       const relevantContent = {
         // title,
