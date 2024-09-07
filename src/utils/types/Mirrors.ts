@@ -155,12 +155,6 @@ export class Mirrors {
         return null;
       }
       const page = this.page;
-      if (await page.$("input#urlCompact:nth-child(2)")) {
-        page.type("input#urlCompact:nth-child(2)", url);
-      }
-      // if (await page.$("input#urlCompact:nth-child(1)")) {
-      //   page.type("input#urlCompact:nth-child(1)", url);
-      // }
       await page.evaluate((url) => {
         const inputs = document.querySelectorAll("input#urlCompact");
         if (!inputs.length) {
@@ -169,7 +163,7 @@ export class Mirrors {
         }
 
         Array.from(inputs).map((input) => {
-          (input as HTMLInputElement).value = url; // Target the second input, if needed
+          (input as HTMLInputElement).value = url; // Set the value of the input(s)
         });
       }, url);
 
