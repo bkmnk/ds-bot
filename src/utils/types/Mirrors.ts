@@ -76,6 +76,7 @@ export class Mirrors {
   private channels: Record<string, string> = {};
   private mavelyLinks: Record<string, string> = {};
   private hasLoggedIn = false;
+  private processedItems = 0;
 
   private logErrors(methodname: string, error: Error) {
     const date = new Date().toISOString();
@@ -291,6 +292,7 @@ export class Mirrors {
       );
 
       console.log("💥💥 Final Mavely Link:", finalLink);
+      this.processedItems++;
       return finalLink;
     } catch (error) {
       this.logErrors("Mirrors.generateMavelyLinkForUrl", error as Error);
@@ -519,6 +521,12 @@ export class Mirrors {
           2
         ) + ",\n"
       );
+      /* Clean up */
+      if(this.processedItems > 250){
+        console.log(`Cleaning up ${Object.keys(this.mavelyLinks).length} links`);
+        this.processedItems = 0;
+        this.mavelyLinks = {}
+      }
     } catch (error) {
       this.logErrors("onMirror", error as Error);
     }
