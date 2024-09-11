@@ -407,7 +407,6 @@ export class Mirrors {
     deleted: Boolean = false
   ) => {
     try {
-      console.log('mirror')
       if (!this.messageQueue) {
         console.log("no messageQueue defined");
       }
