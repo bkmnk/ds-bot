@@ -128,6 +128,7 @@ export class Mirrors {
       await new Promise(async (resolve) =>
         setTimeout(() => resolve("done"), 2000)
       );
+      console.log('starting login process', await page.$("input#email") )
       if (await page.$("input#email")) {
         console.log("🌐 Loggin in to Mavely");
         await page.type("#email", mavelyUserEmail);
