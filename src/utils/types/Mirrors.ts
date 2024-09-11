@@ -292,7 +292,6 @@ export class Mirrors {
       );
 
       console.log("💥💥 Final Mavely Link:", finalLink);
-      this.processedItems++;
       return finalLink;
     } catch (error) {
       this.logErrors("Mirrors.generateMavelyLinkForUrl", error as Error);
@@ -475,6 +474,7 @@ export class Mirrors {
               // return generatedLink;
             }
             console.log("🔂 Message processed");
+            this.processedItems++;
             return this.mavelyLinks[url] || url;
           } catch (queueError) {
             this.logErrors("onMirror - Queue Processing", queueError as Error);
