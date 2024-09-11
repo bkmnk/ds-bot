@@ -160,7 +160,7 @@ export const getChannel: (channel: string) => Promise<TChannel> = async (
 ) => {
   const findCh = channels.filter((ch) => ch.id === channel);
   if (findCh.length > 0) return findCh[0];
-
+  console.log('get channel info')
   const endpoint = `https://discord.com/api/v9/channels/${channel}`;
   const DISCORD_TOKEN = String(process.env.DISCORD_TOKEN);
   return await axios

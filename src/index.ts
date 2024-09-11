@@ -10,9 +10,12 @@ brand(require("../package.json").version);
 const client: CustomClient = new CustomClient({
   checkUpdate: false,
 });
+console.log('client',client)
 
 client.config = new Config(join(__dirname, "../config.yaml"));
+console.log('client.config',client.config)
 client.mirrors = new Mirrors(client.config);
+console.log('client.mirrors',client.mirrors)
 
 client.on("ready", async () => {
   logger(`Espelhos iniciados! Usuário: ${client.user?.username}`);
