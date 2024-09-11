@@ -88,7 +88,7 @@ export class Mirrors {
     );
   }
   constructor(config: Config) {
-    this.initBrowser();
+    // this.initBrowser();
 
     this.messageQueue = new PQueue({ concurrency: 1 });
 
@@ -461,33 +461,31 @@ export class Mirrors {
         link.includes("mavely")
       );
       const uniqueLinks = [...new Set(mavellyLinks)];
-      await BluePromise.each(uniqueLinks, async (url: string) => {
-        // for await (const url of uniqueLinks) {
-        await this.messageQueue.add(async () => {
-          while (!this.hasLoggedIn) {
-            await new Promise((resolve) => setTimeout(resolve, 1000));
-          }
-          console.log("🔂 Adding message to the Queue", this.processedItems);
-          try {
-            console.log("🔂 Proccesing queue message...");
-            const existentAffiliateLink = this.mavelyLinks[url];
-            if (!existentAffiliateLink) {
-              const generatedLink = await this.generateMavelyLinkForUrl(
-                url,
-                channelFrom
-              );
-              this.mavelyLinks[url] = generatedLink;
-              // return generatedLink;
-            }
-            console.log("🔂 Message processed");
-            this.processedItems++;
-            return this.mavelyLinks[url] || url;
-          } catch (queueError) {
-            this.logErrors("onMirror - Queue Processing", queueError as Error);
-          }
-        });
-      });
-      // console.log("starting replace urls");
+
+      // await BluePromise.each(uniqueLinks, async (url: string) => {
+      //   await this.messageQueue.add(async () => {
+      //     while (!this.hasLoggedIn) {
+      //       await new Promise((resolve) => setTimeout(resolve, 1000));
+      //     }
+      //     console.log("🔂 Adding message to the Queue", this.processedItems);
+      //     try {
+      //       console.log("🔂 Proccesing queue message...");
+      //       const existentAffiliateLink = this.mavelyLinks[url];
+      //       if (!existentAffiliateLink) {
+      //         const generatedLink = await this.generateMavelyLinkForUrl(
+      //           url,
+      //           channelFrom
+      //         );
+      //         this.mavelyLinks[url] = generatedLink;
+      //       }
+      //       console.log("🔂 Message processed");
+      //       this.processedItems++;
+      //       return this.mavelyLinks[url] || url;
+      //     } catch (queueError) {
+      //       this.logErrors("onMirror - Queue Processing", queueError as Error);
+      //     }
+      //   });
+      // });
 
       /* Replace existent links for new affiliate ones */
       this.handleUrlReplace(message);
