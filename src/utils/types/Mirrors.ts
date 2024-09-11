@@ -109,18 +109,20 @@ export class Mirrors {
 
   initBrowser = async () => {
     /* Set up browser */
-    const browser = await puppeteer.launch({
-      headless: true,
-      args: ["--no-sandbox", "--disable-setuid-sandbox"],
-      env: {
-        DISPLAY: ":10.0",
-      },
-      // timeout
-    });
-    const page = await browser.newPage();
-    this.browser = browser;
-    this.page = page;
     try {
+      console.log('Starting browser')
+      const browser = await puppeteer.launch({
+        headless: true,
+        args: ["--no-sandbox", "--disable-setuid-sandbox"],
+        env: {
+          DISPLAY: ":10.0",
+        },
+        // timeout
+      });
+      const page = await browser.newPage();
+      this.browser = browser;
+      this.page = page;
+
       const generateLinkUrl = "https://creators.joinmavely.com/home";
       await page.goto(generateLinkUrl);
       await new Promise(async (resolve) =>
@@ -522,7 +524,7 @@ export class Mirrors {
         ) + ",\n"
       );
       /* Clean up */
-      if(this.processedItems > 10){
+      if (this.processedItems > 10) {
         console.log(`Cleaning up ${Object.keys(this.mavelyLinks).length} links`);
         this.processedItems = 0;
         this.mavelyLinks = {}
