@@ -123,8 +123,10 @@ export class Mirrors {
       this.browser = browser;
       this.page = page;
       console.log('browser started');
-      const generateLinkUrl = "https://creators.joinmavely.com/home";
+      const generateLinkUrl = "https://creators.joinmavely.com/auth/login";
+      console.log('go to page');
       await page.goto(generateLinkUrl);
+      console.log('went to page');
       await new Promise(async (resolve) =>
         setTimeout(() => resolve("done"), 2000)
       );
