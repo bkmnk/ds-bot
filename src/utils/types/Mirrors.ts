@@ -122,7 +122,7 @@ export class Mirrors {
       const page = await browser.newPage();
       this.browser = browser;
       this.page = page;
-
+      console.log('browser started');
       const generateLinkUrl = "https://creators.joinmavely.com/home";
       await page.goto(generateLinkUrl);
       await new Promise(async (resolve) =>
@@ -404,6 +404,7 @@ export class Mirrors {
     deleted: Boolean = false
   ) => {
     try {
+      console.log('mirror')
       if (!this.messageQueue) {
         console.log("no messageQueue defined");
       }
