@@ -462,7 +462,7 @@ export class Mirrors {
           while (!this.hasLoggedIn) {
             await new Promise((resolve) => setTimeout(resolve, 1000));
           }
-          console.log("🔂 Adding message to the Queue");
+          console.log("🔂 Adding message to the Queue", this.processedItems);
           try {
             console.log("🔂 Proccesing queue message...");
             const existentAffiliateLink = this.mavelyLinks[url];
@@ -522,7 +522,7 @@ export class Mirrors {
         ) + ",\n"
       );
       /* Clean up */
-      if(this.processedItems > 250){
+      if(this.processedItems > 10){
         console.log(`Cleaning up ${Object.keys(this.mavelyLinks).length} links`);
         this.processedItems = 0;
         this.mavelyLinks = {}
