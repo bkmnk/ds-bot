@@ -1,5 +1,4 @@
-nano config.yaml #create it
-nanmo .env #create it
+# nano .env #create it
 
 echo "Installing dependencies..."
 sudo apt install npm
