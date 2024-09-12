@@ -125,7 +125,7 @@ export class Mirrors {
       this.browser = browser;
       this.page = page;
       console.log('browser started');
-      const generateLinkUrl = "https://creators.joinmavely.com/auth/login";
+      const generateLinkUrl = "https://creators.joinmavely.com/home";
       console.log('go to page');
       await page.goto(generateLinkUrl);
       console.log('went to page');
