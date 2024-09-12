@@ -70,8 +70,8 @@ export class Mirrors {
     to: string;
     expire: number;
   }[] = [];
-  private browser?: Browser = undefined;
-  private page?: Page = undefined;
+  // private browser?: Browser = undefined;
+  // private page?: Page = undefined;
   private messageQueue: PQueue;
   private channels: Record<string, string> = {};
   private mavelyLinks: Record<string, string> = {};
@@ -88,8 +88,7 @@ export class Mirrors {
     );
   }
   constructor(config: Config) {
-    this.initBrowser();
-
+    // this.initBrowser();
 
     console.log(`Carregando ${config.getMirrors().length} espelhos...`);
     this.props = {
@@ -106,63 +105,74 @@ export class Mirrors {
     console.log(`  --> Espelhos carregados...\n`);
 
     this.messageQueue = new PQueue({ concurrency: 1 });
-
   }
 
-  initBrowser = async () => {
-    /* Set up browser */
+  // initBrowser = async () => {
+  //   /* Set up browser */
+  //   try {
+  //     console.log('Starting browser')
+  //     const browser = await puppeteer.launch({
+  //       headless: true,
+  //       args: ["--no-sandbox", "--disable-setuid-sandbox"],
+  //     });
+  //     const page = await browser.newPage();
+  //     this.browser = browser;
+  //     this.page = page;
+  //     console.log('browser started');
+  //     await this.handleMavelyLogin(browser, page);
+
+  //     browser.close();
+  //   } catch (error) {
+  //     this.logErrors("initBrowser", error as Error);
+  //     return;
+  //   }
+  // };
+
+  handleMavelyLogin = async (browser: Browser, page: Page) => {
+    const generateLinkUrl = "https://creators.joinmavely.com/home";
+    console.log("go to page");
+    await page.goto(generateLinkUrl);
+    console.log("went to page");
+    await new Promise(async (resolve) =>
+      setTimeout(() => resolve("done"), 2000)
+    );
+    console.log("starting login process", await page.$("input#email"));
+    if (await page.$("input#email")) {
+      console.log("🌐 Loggin in to Mavely");
+      await page.type("#email", mavelyUserEmail);
+      await page.type("#password", mavelyUserPassword);
+      await page.click('button[type="submit"]');
+      await page.waitForNavigation();
+      await new Promise(async (resolve) =>
+        setTimeout(() => resolve("done"), 3000)
+      );
+    }
+    if (page.url() !== generateLinkUrl) {
+      console.log("🌐 Login failed");
+      await browser.close();
+      return;
+    }
+    console.log("🌐 Logged in successfully to Mavely");
+    return (this.hasLoggedIn = true);
+  };
+  generateMavelyLink = async (url: string) => {
     try {
-      console.log('Starting browser')
+      console.log("Starting browser");
       const browser = await puppeteer.launch({
         headless: true,
         args: ["--no-sandbox", "--disable-setuid-sandbox"],
-        env: {
-          DISPLAY: ":10.0",
-        },
-        // timeout
       });
       const page = await browser.newPage();
-      this.browser = browser;
-      this.page = page;
-      console.log('browser started');
-      const generateLinkUrl = "https://creators.joinmavely.com/home";
-      console.log('go to page');
-      await page.goto(generateLinkUrl);
-      console.log('went to page');
-      await new Promise(async (resolve) =>
-        setTimeout(() => resolve("done"), 2000)
-      );
-      console.log('starting login process', await page.$("input#email"))
-      if (await page.$("input#email")) {
-        console.log("🌐 Loggin in to Mavely");
-        await page.type("#email", mavelyUserEmail);
-        await page.type("#password", mavelyUserPassword);
-        await page.click('button[type="submit"]');
-        await page.waitForNavigation();
-        await new Promise(async (resolve) =>
-          setTimeout(() => resolve("done"), 3000)
-        );
-      }
-      if (page.url() !== generateLinkUrl) {
-        console.log("🌐 Login failed");
-        await browser.close();
-        return;
-      }
-      console.log("🌐 Logged in successfully to Mavely");
-      return (this.hasLoggedIn = true);
-    } catch (error) {
-      this.logErrors("initBrowser", error as Error);
-      return;
-    }
-  };
+      // this.browser = browser;
+      // this.page = page;
+      console.log("browser started");
+      await this.handleMavelyLogin(browser, page);
 
-  generateMavelyLink = async (url: string) => {
-    try {
-      if (!this.browser || !this.page) {
+      if (!browser || !page) {
         console.log("Browser not initialized");
         return null;
       }
-      const page = this.page;
+      // const page = this.page;
       await page.evaluate((url) => {
         const inputs = document.querySelectorAll("input#urlCompact");
         if (!inputs.length) {
@@ -192,11 +202,8 @@ export class Mirrors {
           (backButton as HTMLButtonElement).click();
         });
       }
-      // if(!link){
-      //   await page.screenshot({
-      //     path: "./sc-" + new Date().toISOString() + "-" + url + ".png",
-      //   });
-      // }
+      console.log('Closing browser')
+      browser.close();
       return link;
     } catch (error) {
       this.logErrors("Mirrors.generateMavelyLink", error as Error);
@@ -262,7 +269,7 @@ export class Mirrors {
 
       const { endUrl, endUrlClean } = await this.parseUrl(originalUrl);
       let finalLink = await this.generateMavelyLink(endUrlClean);
-      console.log('mavely link:', finalLink, 'for URL:', endUrlClean);
+      console.log("mavely link:", finalLink, "for URL:", endUrlClean);
       if (!finalLink) {
         console.log("finalLink not found for: ", url, endUrlClean, finalLink);
         fs.appendFileSync(
@@ -274,7 +281,7 @@ export class Mirrors {
             finalLink,
             date,
             channelFrom,
-          }) + ',\n'
+          }) + ",\n"
         );
         return originalUrl;
       }
@@ -323,9 +330,16 @@ export class Mirrors {
         if (findMessage)
           mirror.wh
             .deleteMessage(findMessage.to)
-            .then(() => logger(`${new Date().toISOString()} Mensagem deletada! De: ${channelFrom}`))
+            .then(() =>
+              logger(
+                `${new Date().toISOString()} Mensagem deletada! De: ${channelFrom}`
+              )
+            )
             .catch((err) => {
-              logger(`${new Date().toISOString()} Error ao deletar mensagem! De: ${channelFrom}\n\n`, err);
+              logger(
+                `${new Date().toISOString()} Error ao deletar mensagem! De: ${channelFrom}\n\n`,
+                err
+              );
             });
       } else if (edited) {
         const findMessage = this.mirroredMessages.find(
@@ -335,15 +349,24 @@ export class Mirrors {
         if (findMessage)
           mirror.wh
             .editMessage(findMessage.to, payload)
-            .then(() => logger(`${new Date().toISOString()} Mensagem editada! De: ${channelFrom}`))
+            .then(() =>
+              logger(
+                `${new Date().toISOString()} Mensagem editada! De: ${channelFrom}`
+              )
+            )
             .catch((err) => {
-              logger(`${new Date().toISOString()} Error ao editar mensagem! De: ${channelFrom}\n\n`, err);
+              logger(
+                `${new Date().toISOString()} Error ao editar mensagem! De: ${channelFrom}\n\n`,
+                err
+              );
             });
       } else {
         mirror.wh
           .send(payload)
           .then((msg) => {
-            logger(`${new Date().toISOString()} Mensagem enviada! De: ${channelFrom}`);
+            logger(
+              `${new Date().toISOString()} Mensagem enviada! De: ${channelFrom}`
+            );
 
             this.mirroredMessages.push({
               from: message.id,
@@ -352,7 +375,10 @@ export class Mirrors {
             });
           })
           .catch((err) => {
-            logger(`${new Date().toISOString()} Erro ao enviar mensagem! De: ${channelFrom}\n\n`, err);
+            logger(
+              `${new Date().toISOString()} Erro ao enviar mensagem! De: ${channelFrom}\n\n`,
+              err
+            );
           });
       }
     } catch (error) {
@@ -431,7 +457,6 @@ export class Mirrors {
       const payload = this.createPayload(message, mirror.settings);
       const replacedMessage = { ...message, ...payload };
 
-
       // if (!channelFrom.includes("oa-leads")) return;
       // console.log("Handling message from 💎┃oa-leads");
       fs.appendFileSync(
@@ -501,18 +526,17 @@ export class Mirrors {
       );
       fs.appendFileSync(
         "updatedMessagesOriginal.json",
-        JSON.stringify({ ...message, date, channelFrom }, null, 2) +
-        ",\n"
+        JSON.stringify({ ...message, date, channelFrom }, null, 2) + ",\n"
       );
       /* Send updated message to discord */
-      await this.discordMessageHandler(
-        message,
-        edited,
-        deleted,
-        channelFrom,
-        mirror,
-        payload
-      );
+      // await this.discordMessageHandler(
+      //   message,
+      //   edited,
+      //   deleted,
+      //   channelFrom,
+      //   mirror,
+      //   payload
+      // );
       fs.appendFileSync(
         "sentMessages.json",
         JSON.stringify(
@@ -528,9 +552,11 @@ export class Mirrors {
       );
       /* Clean up */
       if (this.processedItems > 10) {
-        console.log(`Cleaning up ${Object.keys(this.mavelyLinks).length} links`);
+        console.log(
+          `Cleaning up ${Object.keys(this.mavelyLinks).length} links`
+        );
         this.processedItems = 0;
-        this.mavelyLinks = {}
+        this.mavelyLinks = {};
       }
     } catch (error) {
       this.logErrors("onMirror", error as Error);
