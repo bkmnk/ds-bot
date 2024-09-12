@@ -13,12 +13,14 @@ const client: CustomClient = new CustomClient({
 
 client.config = new Config(join(__dirname, "../config.yaml"));
 client.mirrors = new Mirrors(client.config);
-console.log("Startinglogging in client");
+console.log("Starting logging in client");
 client.login(client.config?.getToken());
 console.log("Done logging in client");
+
 client.on("error", (err) => logger(err, "error"));
 client.on("warn", (warn) => logger(warn, "warn"));
-client.on("debug", (debug) => logger(debug, "debug"));
+// client.on("debug", (debug) => logger(debug, "debug"));
+
 client.on("ready", async () => {
   logger(`Espelhos iniciados! Usuário: ${client.user?.username}`);
 });
