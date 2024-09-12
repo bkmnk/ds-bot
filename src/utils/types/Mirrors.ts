@@ -88,7 +88,7 @@ export class Mirrors {
     );
   }
   constructor(config: Config) {
-    // this.initBrowser();
+    this.initBrowser();
 
 
     console.log(`Carregando ${config.getMirrors().length} espelhos...`);
@@ -463,30 +463,30 @@ export class Mirrors {
       );
       const uniqueLinks = [...new Set(mavellyLinks)];
 
-      // await BluePromise.each(uniqueLinks, async (url: string) => {
-      //   await this.messageQueue.add(async () => {
-      //     while (!this.hasLoggedIn) {
-      //       await new Promise((resolve) => setTimeout(resolve, 1000));
-      //     }
-      //     console.log("🔂 Adding message to the Queue", this.processedItems);
-      //     try {
-      //       console.log("🔂 Proccesing queue message...");
-      //       const existentAffiliateLink = this.mavelyLinks[url];
-      //       if (!existentAffiliateLink) {
-      //         const generatedLink = await this.generateMavelyLinkForUrl(
-      //           url,
-      //           channelFrom
-      //         );
-      //         this.mavelyLinks[url] = generatedLink;
-      //       }
-      //       console.log("🔂 Message processed");
-      //       this.processedItems++;
-      //       return this.mavelyLinks[url] || url;
-      //     } catch (queueError) {
-      //       this.logErrors("onMirror - Queue Processing", queueError as Error);
-      //     }
-      //   });
-      // });
+      await BluePromise.each(uniqueLinks, async (url: string) => {
+        await this.messageQueue.add(async () => {
+          while (!this.hasLoggedIn) {
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+          }
+          console.log("🔂 Adding message to the Queue", this.processedItems);
+          try {
+            console.log("🔂 Proccesing queue message...");
+            const existentAffiliateLink = this.mavelyLinks[url];
+            if (!existentAffiliateLink) {
+              const generatedLink = await this.generateMavelyLinkForUrl(
+                url,
+                channelFrom
+              );
+              this.mavelyLinks[url] = generatedLink;
+            }
+            console.log("🔂 Message processed");
+            this.processedItems++;
+            return this.mavelyLinks[url] || url;
+          } catch (queueError) {
+            this.logErrors("onMirror - Queue Processing", queueError as Error);
+          }
+        });
+      });
 
       /* Replace existent links for new affiliate ones */
       this.handleUrlReplace(message);
@@ -505,14 +505,14 @@ export class Mirrors {
         ",\n"
       );
       /* Send updated message to discord */
-      await this.discordMessageHandler(
-        message,
-        edited,
-        deleted,
-        channelFrom,
-        mirror,
-        payload
-      );
+      // await this.discordMessageHandler(
+      //   message,
+      //   edited,
+      //   deleted,
+      //   channelFrom,
+      //   mirror,
+      //   payload
+      // );
       fs.appendFileSync(
         "sentMessages.json",
         JSON.stringify(
