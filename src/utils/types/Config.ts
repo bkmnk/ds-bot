@@ -16,6 +16,7 @@ export class Config {
     const file = readFileSync(path, "utf-8");
     const config = YAML(file);
     const token = String(process.env.DISCORD_TOKEN);
+    console.log("token?", !!token, token.length);
     this.props = { ...config, token };
   }
 

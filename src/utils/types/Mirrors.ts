@@ -90,7 +90,6 @@ export class Mirrors {
   constructor(config: Config) {
     // this.initBrowser();
 
-    this.messageQueue = new PQueue({ concurrency: 1 });
 
     console.log(`Carregando ${config.getMirrors().length} espelhos...`);
     this.props = {
@@ -105,6 +104,9 @@ export class Mirrors {
         )
       );
     console.log(`  --> Espelhos carregados...\n`);
+
+    this.messageQueue = new PQueue({ concurrency: 1 });
+
   }
 
   initBrowser = async () => {
