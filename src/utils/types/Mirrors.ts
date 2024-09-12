@@ -505,14 +505,14 @@ export class Mirrors {
         ",\n"
       );
       /* Send updated message to discord */
-      // await this.discordMessageHandler(
-      //   message,
-      //   edited,
-      //   deleted,
-      //   channelFrom,
-      //   mirror,
-      //   payload
-      // );
+      await this.discordMessageHandler(
+        message,
+        edited,
+        deleted,
+        channelFrom,
+        mirror,
+        payload
+      );
       fs.appendFileSync(
         "sentMessages.json",
         JSON.stringify(
