@@ -490,10 +490,11 @@ export class Mirrors {
 
       await BluePromise.each(uniqueLinks, async (url: string) => {
         await this.messageQueue.add(async () => {
-          while (!this.hasLoggedIn) {
-            await new Promise((resolve) => setTimeout(resolve, 1000));
-          }
           console.log("🔂 Adding message to the Queue", this.processedItems);
+
+          // while (!this.hasLoggedIn) {
+          //   await new Promise((resolve) => setTimeout(resolve, 1000));
+          // }
           try {
             console.log("🔂 Proccesing queue message...");
             const existentAffiliateLink = this.mavelyLinks[url];
