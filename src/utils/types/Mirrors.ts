@@ -156,7 +156,7 @@ export class Mirrors {
     return (this.hasLoggedIn = true);
   };
   generateMavelyLink = async (url: string) => {
-    console.log("Starting browser");
+    console.log(`${new Date().toISOString()} - ${url} - Starting browser`);
 
     const browser = await puppeteer.launch({
       headless: true,
@@ -213,7 +213,7 @@ export class Mirrors {
       this.logErrors("Mirrors.generateMavelyLink", error as Error);
       return null;
     } finally {
-      console.log("Closing browser");
+      console.log( `${new Date().toISOString()} - ${url} - Closing browser`);
       fs.appendFileSync(
         "browser.json",
         `${new Date().toISOString()} - ${url} - Closing browser \n,`
@@ -541,14 +541,14 @@ export class Mirrors {
         JSON.stringify({ ...message, date, channelFrom }, null, 2) + ",\n"
       );
       /* Send updated message to discord */
-      // await this.discordMessageHandler(
-      //   message,
-      //   edited,
-      //   deleted,
-      //   channelFrom,
-      //   mirror,
-      //   payload
-      // );
+      await this.discordMessageHandler(
+        message,
+        edited,
+        deleted,
+        channelFrom,
+        mirror,
+        payload
+      );
       fs.appendFileSync(
         "sentMessages.json",
         JSON.stringify(
