@@ -84,7 +84,7 @@ export class Mirrors {
     fs.appendFileSync(
       "errors.json",
       JSON.stringify({ methodname, error: error.message, date }, null, 2) +
-      ",\n"
+        ",\n"
     );
   }
   constructor(config: Config) {
@@ -156,12 +156,17 @@ export class Mirrors {
     return (this.hasLoggedIn = true);
   };
   generateMavelyLink = async (url: string) => {
+    console.log("Starting browser");
+
+    const browser = await puppeteer.launch({
+      headless: true,
+      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    });
+    fs.appendFileSync(
+      "browser.json",
+      `${new Date().toISOString()} - ${url} - Starting browser \n,`
+    );
     try {
-      console.log("Starting browser");
-      const browser = await puppeteer.launch({
-        headless: true,
-        args: ["--no-sandbox", "--disable-setuid-sandbox"],
-      });
       const page = await browser.newPage();
       // this.browser = browser;
       // this.page = page;
@@ -202,12 +207,18 @@ export class Mirrors {
           (backButton as HTMLButtonElement).click();
         });
       }
-      console.log('Closing browser')
-      browser.close();
+
       return link;
     } catch (error) {
       this.logErrors("Mirrors.generateMavelyLink", error as Error);
       return null;
+    } finally {
+      console.log("Closing browser");
+      fs.appendFileSync(
+        "browser.json",
+        `${new Date().toISOString()} - ${url} - Closing browser \n,`
+      );
+      browser.close();
     }
   };
 
@@ -446,7 +457,7 @@ export class Mirrors {
       }
       const channelId =
         message.channel?.isThread() &&
-          message.channel?.parent?.type === "GUILD_FORUM"
+        message.channel?.parent?.type === "GUILD_FORUM"
           ? (message.channel?.parentId as string)
           : message.channelId;
 
@@ -457,12 +468,12 @@ export class Mirrors {
       const payload = this.createPayload(message, mirror.settings);
       const replacedMessage = { ...message, ...payload };
 
-      // if (!channelFrom.includes("oa-leads")) return;
-      // console.log("Handling message from 💎┃oa-leads");
+      if (!channelFrom.includes("oa-leads")) return;
+      console.log("Handling message from 💎┃oa-leads");
       fs.appendFileSync(
         "messages.json",
         JSON.stringify({ ...replacedMessage, date, channelFrom }, null, 2) +
-        ",\n"
+          ",\n"
       );
       /* Get all links from the message */
       const messageLinks: string[] = [];
@@ -523,7 +534,7 @@ export class Mirrors {
       fs.appendFileSync(
         "updatedMessages.json",
         JSON.stringify({ ...replacedMessage, date, channelFrom }, null, 2) +
-        ",\n"
+          ",\n"
       );
       fs.appendFileSync(
         "updatedMessagesOriginal.json",
@@ -583,17 +594,17 @@ export class Mirrors {
         : null,
       embeds: !mirrorSettings.noEmbeds
         ? newMessage.embeds.map(
-          (embed) =>
-          ({
-            ...embed,
-            fields: embed.fields.map((field) => ({
-              name: field.name.trim().length === 0 ? "\u200B" : field.name,
-              value:
-                field.value.trim().length === 0 ? "\u200B" : field.value,
-              inline: field.inline,
-            })),
-          } as MessageEmbed)
-        )
+            (embed) =>
+              ({
+                ...embed,
+                fields: embed.fields.map((field) => ({
+                  name: field.name.trim().length === 0 ? "\u200B" : field.name,
+                  value:
+                    field.value.trim().length === 0 ? "\u200B" : field.value,
+                  inline: field.inline,
+                })),
+              } as MessageEmbed)
+          )
         : [],
       files: !mirrorSettings.noAttachments
         ? [...newMessage.attachments.values()]
