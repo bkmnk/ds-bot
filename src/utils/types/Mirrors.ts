@@ -191,7 +191,9 @@ export class Mirrors {
       //     (input as HTMLInputElement).value = url; // Set the value of the input(s)
       //   });
       // }, url);
-
+      await new Promise(async (resolve) =>
+        setTimeout(() => resolve("done"), 2000)
+      );
       await page.type("input#urlCompact:nth-child(2)", url);
       await new Promise(async (resolve) =>
         setTimeout(() => resolve("done"), 2000)
