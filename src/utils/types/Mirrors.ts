@@ -180,24 +180,24 @@ export class Mirrors {
       // const page = this.page;
 
 
-      // await page.evaluate((url) => {
-      //   const inputs = document.querySelectorAll("input#urlCompact");
-      //   if (!inputs.length) {
-      //     console.log("urlCompact input not found");
-      //     return;
-      //   }
+      await page.evaluate((url) => {
+        const inputs = document.querySelectorAll("input#urlCompact");
+        if (!inputs.length) {
+          console.log("urlCompact input not found");
+          return;
+        }
 
-      //   Array.from(inputs).map((input) => {
-      //     (input as HTMLInputElement).value = url; // Set the value of the input(s)
-      //   });
-      // }, url);
-      await new Promise(async (resolve) =>
-        setTimeout(() => resolve("done"), 2000)
-      );
-      await page.type("input#urlCompact:nth-child(2)", url);
-      await new Promise(async (resolve) =>
-        setTimeout(() => resolve("done"), 2000)
-      );
+        Array.from(inputs).map((input) => {
+          (input as HTMLInputElement).value = url; // Set the value of the input(s)
+        });
+      }, url);
+      // await new Promise(async (resolve) =>
+      //   setTimeout(() => resolve("done"), 2000)
+      // );
+      // await page.type("input#urlCompact:nth-child(2)", url);
+      // await new Promise(async (resolve) =>
+      //   setTimeout(() => resolve("done"), 2000)
+      // );
       await page.click('button[type="submit"]');
       await new Promise(async (resolve) =>
         setTimeout(() => resolve("done"), 5000)
