@@ -157,7 +157,6 @@ export class Mirrors {
   };
   generateMavelyLink = async (url: string) => {
     console.log(`${new Date().toISOString()} - ${url} - Starting browser`);
-
     const browser = await puppeteer.launch({
       headless: true,
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
@@ -166,8 +165,9 @@ export class Mirrors {
       "browser.json",
       `${new Date().toISOString()} - ${url} - Starting browser \n,`
     );
+    const page = await browser.newPage();
+
     try {
-      const page = await browser.newPage();
       // this.browser = browser;
       // this.page = page;
       console.log("browser started");
@@ -179,25 +179,24 @@ export class Mirrors {
       }
       // const page = this.page;
 
+      if (await page.$("input#urlCompact:nth-child(2)")) {
+        page.type("input#urlCompact:nth-child(2)", url);
+      } else {
+        await page.evaluate((url) => {
+          const inputs = document.querySelectorAll("input#urlCompact");
+          if (!inputs.length) {
+            console.log("urlCompact input not found");
+            return;
+          }
+          Array.from(inputs).map((input) => {
+            (input as HTMLInputElement).value = url; // Set the value of the input(s)
+          });
+        }, url);
+      }
+      await new Promise(async (resolve) =>
+        setTimeout(() => resolve("done"), 5000)
+      );
 
-      await page.evaluate((url) => {
-        const inputs = document.querySelectorAll("input#urlCompact");
-        if (!inputs.length) {
-          console.log("urlCompact input not found");
-          return;
-        }
-
-        Array.from(inputs).map((input) => {
-          (input as HTMLInputElement).value = url; // Set the value of the input(s)
-        });
-      }, url);
-      // await new Promise(async (resolve) =>
-      //   setTimeout(() => resolve("done"), 2000)
-      // );
-      // await page.type("input#urlCompact:nth-child(2)", url);
-      // await new Promise(async (resolve) =>
-      //   setTimeout(() => resolve("done"), 2000)
-      // );
       await page.click('button[type="submit"]');
       await new Promise(async (resolve) =>
         setTimeout(() => resolve("done"), 5000)
@@ -221,12 +220,13 @@ export class Mirrors {
       this.logErrors("Mirrors.generateMavelyLink", error as Error);
       return null;
     } finally {
-      console.log( `${new Date().toISOString()} - ${url} - Closing browser`);
+      console.log(`${new Date().toISOString()} - ${url} - Closing browser`);
       fs.appendFileSync(
         "browser.json",
         `${new Date().toISOString()} - ${url} - Closing browser \n,`
       );
-      browser.close();
+      await page.close();
+      await browser.close();
     }
   };
 
