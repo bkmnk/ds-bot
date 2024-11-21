@@ -161,10 +161,10 @@ export class Mirrors {
       headless: true,
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
     });
-    fs.appendFileSync(
-      "browser.json",
-      `${new Date().toISOString()} - ${url} - Starting browser \n,`
-    );
+    // fs.appendFileSync(
+    //   "browser.json",
+    //   `${new Date().toISOString()} - ${url} - Starting browser \n,`
+    // );
     const page = await browser.newPage();
 
     try {
@@ -221,10 +221,10 @@ export class Mirrors {
       return null;
     } finally {
       console.log(`${new Date().toISOString()} - ${url} - Closing browser`);
-      fs.appendFileSync(
-        "browser.json",
-        `${new Date().toISOString()} - ${url} - Closing browser \n,`
-      );
+      // fs.appendFileSync(
+      //   "browser.json",
+      //   `${new Date().toISOString()} - ${url} - Closing browser \n,`
+      // );
       await page.close();
       await browser.close();
     }
@@ -291,17 +291,17 @@ export class Mirrors {
       console.log("mavely link:", finalLink, "for URL:", endUrlClean);
       if (!finalLink) {
         console.log("finalLink not found for: ", url, endUrlClean, finalLink);
-        fs.appendFileSync(
-          "./notGeneratedMavely.json",
-          JSON.stringify({
-            url,
-            endUrlClean,
-            endUrl,
-            finalLink,
-            date,
-            channelFrom,
-          }) + ",\n"
-        );
+        // fs.appendFileSync(
+        //   "./notGeneratedMavely.json",
+        //   JSON.stringify({
+        //     url,
+        //     endUrlClean,
+        //     endUrl,
+        //     finalLink,
+        //     date,
+        //     channelFrom,
+        //   }) + ",\n"
+        // );
         return originalUrl;
       }
       // finalLink = finalLink + '?'; // failsafe for urls added by mavely afterwards
@@ -315,14 +315,14 @@ export class Mirrors {
         finalLink,
         date,
       };
-      fs.appendFileSync(
-        "mavely.json",
-        JSON.stringify(relevantContent, null, 2) + ",\n"
-      );
-      fs.appendFileSync(
-        "mavely.csv",
-        `${channelFrom}|${url}|${endUrl}|${endUrlClean}|${finalLink}|${date}\n`
-      );
+      // fs.appendFileSync(
+      //   "mavely.json",
+      //   JSON.stringify(relevantContent, null, 2) + ",\n"
+      // );
+      // fs.appendFileSync(
+      //   "mavely.csv",
+      //   `${channelFrom}|${url}|${endUrl}|${endUrlClean}|${finalLink}|${date}\n`
+      // );
 
       console.log("💥💥 Final Mavely Link:", finalLink);
       return finalLink;
@@ -478,11 +478,11 @@ export class Mirrors {
 
       // if (!channelFrom.includes("oa-leads")) return;
       // console.log("Handling message from 💎┃oa-leads");
-      fs.appendFileSync(
-        "messages.json",
-        JSON.stringify({ ...replacedMessage, date, channelFrom }, null, 2) +
-          ",\n"
-      );
+      // fs.appendFileSync(
+      //   "messages.json",
+      //   JSON.stringify({ ...replacedMessage, date, channelFrom }, null, 2) +
+      //     ",\n"
+      // );
       /* Get all links from the message */
       const messageLinks: string[] = [];
       replacedMessage.embeds.forEach(async (embed) => {
@@ -502,52 +502,55 @@ export class Mirrors {
       }
 
       /* Create mavely affiliate links for each URL */
-      const mavellyLinks = messageLinks.filter((link) =>
-        link.includes("mavely")
-      );
-      const uniqueLinks = [...new Set(mavellyLinks)];
+      // const mavellyLinks = messageLinks.filter((link) =>
+      //   link.includes("mavely")
+      // );
+      // const uniqueLinks = [...new Set(mavellyLinks)];
 
-      await BluePromise.each(uniqueLinks, async (url: string) => {
-        await this.messageQueue.add(async () => {
-          console.log("🔂 Adding message to the Queue", this.processedItems);
+      // await BluePromise.each(uniqueLinks, async (url: string) => {
+      //   await this.messageQueue.add(async () => {
+      //     console.log("🔂 Adding message to the Queue", this.processedItems);
 
-          // while (!this.hasLoggedIn) {
-          //   await new Promise((resolve) => setTimeout(resolve, 1000));
-          // }
-          try {
-            console.log("🔂 Proccesing queue message...");
-            const existentAffiliateLink = this.mavelyLinks[url];
-            if (!existentAffiliateLink) {
-              const generatedLink = await this.generateMavelyLinkForUrl(
-                url,
-                channelFrom
-              );
-              this.mavelyLinks[url] = generatedLink;
-            }
-            console.log("🔂 Message processed");
-            this.processedItems++;
-            return this.mavelyLinks[url] || url;
-          } catch (queueError) {
-            this.logErrors("onMirror - Queue Processing", queueError as Error);
-          }
-        });
-      });
+      //     // while (!this.hasLoggedIn) {
+      //     //   await new Promise((resolve) => setTimeout(resolve, 1000));
+      //     // }
+      //     try {
+      //       console.log("🔂 Proccesing queue message...");
+      //       const existentAffiliateLink = this.mavelyLinks[url];
+      //       if (!existentAffiliateLink) {
+      //         const generatedLink = await this.generateMavelyLinkForUrl(
+      //           url,
+      //           channelFrom
+      //         );
+      //         this.mavelyLinks[url] = generatedLink;
+      //       }
+      //       console.log("🔂 Message processed");
+      //       this.processedItems++;
+      //       return this.mavelyLinks[url] || url;
+      //     } catch (queueError) {
+      //       this.logErrors("onMirror - Queue Processing", queueError as Error);
+      //     }
+      //   });
+      // });
 
       /* Replace existent links for new affiliate ones */
-      this.handleUrlReplace(message);
-      this.handleUrlReplace(payload as unknown as Message);
-      this.handleUrlReplace(replacedMessage as Message);
+      // this.handleUrlReplace(message);
+      // this.handleUrlReplace(payload as unknown as Message);
+      // this.handleUrlReplace(replacedMessage as Message);
+
       // console.log(this.mavelyLinks);
-      fs.writeFileSync("mavelyLinks.json", JSON.stringify(this.mavelyLinks));
-      fs.appendFileSync(
-        "updatedMessages.json",
-        JSON.stringify({ ...replacedMessage, date, channelFrom }, null, 2) +
-          ",\n"
-      );
-      fs.appendFileSync(
-        "updatedMessagesOriginal.json",
-        JSON.stringify({ ...message, date, channelFrom }, null, 2) + ",\n"
-      );
+
+      // fs.writeFileSync("mavelyLinks.json", JSON.stringify(this.mavelyLinks));
+      // fs.appendFileSync(
+      //   "updatedMessages.json",
+      //   JSON.stringify({ ...replacedMessage, date, channelFrom }, null, 2) +
+      //     ",\n"
+      // );
+      // fs.appendFileSync(
+      //   "updatedMessagesOriginal.json",
+      //   JSON.stringify({ ...message, date, channelFrom }, null, 2) + ",\n"
+      // );
+
       /* Send updated message to discord */
       await this.discordMessageHandler(
         message,
@@ -557,19 +560,19 @@ export class Mirrors {
         mirror,
         payload
       );
-      fs.appendFileSync(
-        "sentMessages.json",
-        JSON.stringify(
-          {
-            title:
-              message.embeds?.[0]?.title || message.embeds?.[0]?.description,
-            date,
-            channelFrom,
-          },
-          null,
-          2
-        ) + ",\n"
-      );
+      // fs.appendFileSync(
+      //   "sentMessages.json",
+      //   JSON.stringify(
+      //     {
+      //       title:
+      //         message.embeds?.[0]?.title || message.embeds?.[0]?.description,
+      //       date,
+      //       channelFrom,
+      //     },
+      //     null,
+      //     2
+      //   ) + ",\n"
+      // );
       /* Clean up */
       if (this.processedItems > 10) {
         console.log(
